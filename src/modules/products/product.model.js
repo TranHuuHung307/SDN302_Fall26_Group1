@@ -3,7 +3,11 @@ const { Schema } = mongoose;
 const productSchema = new Schema(
   {
     shopId: { type: Schema.Types.ObjectId, ref: "Shop", required: true },
-    categoryId: { type: Schema.Types.ObjectId, ref: "Category", required: true },
+    categoryId: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
     productName: { type: String, required: true },
     description: { type: String },
     price: { type: Number, required: true, min: 0 },
@@ -12,7 +16,7 @@ const productSchema = new Schema(
     expiryDate: { type: Date },
     productStatus: {
       type: String,
-      enum: ["AVAILABLE", "OUT_OF_STOCK", "HIDDEN"],
+      enum: ["AVAILABLE", "HIDDEN"],
       default: "AVAILABLE",
     },
   },

@@ -1,12 +1,11 @@
-const express = require("express");
-const connectDB = require("./config/db");
-const router = require("./src/routes/index.js");
-const app = express();
-connectDB();
-app.use(express.json());
+require("dotenv").config();
+const connectDB = require("./src/config/db.js");
+const app = require("./src/app.js");
 
-app.use("/", router);
 const PORT = process.env.PORT || 9999;
-app.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`);
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}`);
+  });
 });

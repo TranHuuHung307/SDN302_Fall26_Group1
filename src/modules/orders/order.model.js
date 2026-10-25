@@ -16,6 +16,12 @@ const orderSchema = new Schema(
     shopId: { type: Schema.Types.ObjectId, ref: "Shop", required: true },
     items: [orderItemSchema],
     shippingAddress: { type: String, required: true },
+    phone: { type: String },
+    paymentMethod: {
+      type: String,
+      enum: ["COD", "ONLINE"],
+      default: "COD",
+    },
     totalAmount: { type: Number, required: true, min: 0 },
     orderStatus: {
       type: String,

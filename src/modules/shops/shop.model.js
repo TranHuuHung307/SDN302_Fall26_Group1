@@ -8,9 +8,10 @@ const shopSchema = new Schema(
     logoUrl: { type: String },
     phone: { type: String },
     bannerUrl: { type: String },
+    // SUSPENDED = shop bị Admin khóa (UC19)
     approvalStatus: {
       type: String,
-      enum: ["PENDING", "APPROVED", "REJECTED"],
+      enum: ["PENDING", "APPROVED", "REJECTED", "SUSPENDED"],
       default: "PENDING",
     },
     operationStatus: {

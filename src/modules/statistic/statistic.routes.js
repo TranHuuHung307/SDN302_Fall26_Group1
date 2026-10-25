@@ -1,10 +1,10 @@
 const express = require("express");
 const statisticController = require("./statistic.controller.js");
-const { verifyToken } = require("../../shared/middlewares/auth.js");
+const { verifyToken } = require("../../common/middlewares/auth.js");
 const {
   authorize,
   loadOwnerShop,
-} = require("../../shared/middlewares/authorize.js");
+} = require("../../common/middlewares/authorize.js");
 
 const statisticRouter = express.Router();
 const ownerOnly = [verifyToken, authorize("SHOP_OWNER"), loadOwnerShop];

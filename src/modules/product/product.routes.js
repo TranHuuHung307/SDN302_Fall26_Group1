@@ -5,12 +5,12 @@ const {
   validateUpdate,
   validateStatus,
 } = require("./product.validation.js");
-const { verifyToken } = require("../../shared/middlewares/auth.js");
+const { verifyToken } = require("../../common/middlewares/auth.js");
 const {
   authorize,
   loadOwnerShop,
-} = require("../../shared/middlewares/authorize.js");
-const { createImageUpload } = require("../../shared/utils/upload.js");
+} = require("../../common/middlewares/authorize.js");
+const { createImageUpload } = require("../../common/utils/upload.js");
 
 const productRouter = express.Router();
 const ownerOnly = [verifyToken, authorize("SHOP_OWNER"), loadOwnerShop];

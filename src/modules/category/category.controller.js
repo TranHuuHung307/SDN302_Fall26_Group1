@@ -1,6 +1,6 @@
 const categoryService = require("./category.service.js");
-const asyncHandler = require("../../shared/utils/asyncHandler.js");
-const { success } = require("../../shared/utils/response.js");
+const asyncHandler = require("../../common/utils/asyncHandler.js");
+const { success } = require("../../common/utils/response.js");
 
 // GET /api/categories?shopId=
 const getPublicCategories = asyncHandler(async (req, res) => {

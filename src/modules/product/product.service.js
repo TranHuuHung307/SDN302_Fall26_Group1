@@ -1,13 +1,13 @@
 const Product = require("./product.model.js");
-const Category = require("../categories/category.model.js");
-const Shop = require("../shops/shop.model.js");
-const categoryService = require("../categories/category.service.js");
-const AppError = require("../../shared/errors/AppError.js");
+const Category = require("../category/category.model.js");
+const Shop = require("../shop/shop.model.js");
+const categoryService = require("../category/category.service.js");
+const AppError = require("../../common/errors/AppError.js");
 const {
   escapeRegex,
   assertObjectId,
   getPagination,
-} = require("../../shared/utils/query.js");
+} = require("../../common/utils/query.js");
 
 // shop hiển thị cho khách: không bị khóa (SUSPENDED) và đang mở cửa
 const VISIBLE_SHOP = { approvalStatus: "APPROVED", operationStatus: "OPEN" };

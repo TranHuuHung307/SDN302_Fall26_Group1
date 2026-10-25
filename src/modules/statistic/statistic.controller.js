@@ -1,6 +1,6 @@
 const statisticService = require("./statistic.service.js");
-const asyncHandler = require("../../shared/utils/asyncHandler.js");
-const { success } = require("../../shared/utils/response.js");
+const asyncHandler = require("../../common/utils/asyncHandler.js");
+const { success } = require("../../common/utils/response.js");
 
 // GET /api/statistics/revenue
 const getRevenue = asyncHandler(async (req, res) => {

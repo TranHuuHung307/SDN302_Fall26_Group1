@@ -1,7 +1,7 @@
 // Bản tạm cho các luồng chạy được, Luồng 1 (UC02, UC05) sẽ hoàn thiện.
 // Token cần có id user trong payload: { id } (chấp nhận cả _id / userId).
 const jwt = require("jsonwebtoken");
-const User = require("../../modules/users/user.model.js");
+const User = require("../../modules/user/user.model.js");
 const AppError = require("../errors/AppError.js");
 
 const verifyToken = async (req, res, next) => {

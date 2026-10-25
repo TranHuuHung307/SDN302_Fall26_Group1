@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const AppError = require("../../shared/errors/AppError.js");
+const AppError = require("../../common/errors/AppError.js");
 
 // body có thể là JSON hoặc multipart/form-data nên giá trị số / mảng
 // có thể đang ở dạng chuỗi

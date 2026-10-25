@@ -1,5 +1,5 @@
 // Bản tạm, Luồng 1 (UC05) sẽ bổ sung phần kiểm tra quyền shop_staff.
-const Shop = require("../../modules/shops/shop.model.js");
+const Shop = require("../../modules/shop/shop.model.js");
 const AppError = require("../errors/AppError.js");
 
 // dùng sau verifyToken: authorize("SHOP_OWNER"), authorize("ADMIN", "SHOP_OWNER")

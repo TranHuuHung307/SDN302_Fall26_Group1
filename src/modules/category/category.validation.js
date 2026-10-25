@@ -1,4 +1,4 @@
-const AppError = require("../../shared/errors/AppError.js");
+const AppError = require("../../common/errors/AppError.js");
 
 const STATUSES = ["ACTIVE", "INACTIVE"];
 

@@ -1,5 +1,5 @@
-const Order = require("../orders/order.model.js");
-const AppError = require("../../shared/errors/AppError.js");
+const Order = require("../order/order.model.js");
+const AppError = require("../../common/errors/AppError.js");
 
 const TIMEZONE = "Asia/Ho_Chi_Minh";
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;

@@ -1,7 +1,7 @@
 const productService = require("./product.service.js");
-const asyncHandler = require("../../shared/utils/asyncHandler.js");
-const { success, paginated } = require("../../shared/utils/response.js");
-const { toPublicUrl } = require("../../shared/utils/upload.js");
+const asyncHandler = require("../../common/utils/asyncHandler.js");
+const { success, paginated } = require("../../common/utils/response.js");
+const { toPublicUrl } = require("../../common/utils/upload.js");
 
 const uploadedImages = (req) =>
   (req.files || []).map((file) => toPublicUrl("products", file));

@@ -1,7 +1,7 @@
 const Category = require("./category.model.js");
-const Shop = require("../shops/shop.model.js");
-const AppError = require("../../shared/errors/AppError.js");
-const { escapeRegex, assertObjectId } = require("../../shared/utils/query.js");
+const Shop = require("../shop/shop.model.js");
+const AppError = require("../../common/errors/AppError.js");
+const { escapeRegex, assertObjectId } = require("../../common/utils/query.js");
 
 // tên danh mục không trùng trong cùng shop (không phân biệt hoa thường)
 const ensureNameUnique = async (shopId, categoryName, excludeId) => {

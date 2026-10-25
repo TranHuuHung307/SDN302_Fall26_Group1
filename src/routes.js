@@ -1,7 +1,7 @@
 const express = require("express");
-const categoryRouter = require("./modules/categories/category.routes.js");
-const productRouter = require("./modules/products/product.routes.js");
-const statisticRouter = require("./modules/statistics/statistic.routes.js");
+const categoryRouter = require("./modules/category/category.routes.js");
+const productRouter = require("./modules/product/product.routes.js");
+const statisticRouter = require("./modules/statistic/statistic.routes.js");
 
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-const Order = require("../order/order.model.js");
+const Order = require("../../models/order.model.js");
 const AppError = require("../../common/errors/AppError.js");
 
 const TIMEZONE = "Asia/Ho_Chi_Minh";
@@ -41,7 +41,7 @@ const getRevenue = async (shopId, query) => {
     throw new AppError(400, "groupBy phải là day hoặc month");
   }
 
-  const rows = await Order.aggregate([
+  return Order.aggregate([
     { $match: buildMatch(shopId, query) },
     {
       $group: {
@@ -53,21 +53,13 @@ const getRevenue = async (shopId, query) => {
           },
         },
         revenue: { $sum: "$totalAmount" },
-        orderCount: { $sum: 1 },
+        orders: { $sum: 1 },
       },
     },
     { $sort: { _id: 1 } },
-    { $project: { _id: 0, period: "$_id", revenue: 1, orderCount: 1 } },
+    // [{ date, revenue, orders }] - date là "YYYY-MM-DD" hoặc "YYYY-MM" theo groupBy
+    { $project: { _id: 0, date: "$_id", revenue: 1, orders: 1 } },
   ]);
-
-  return {
-    groupBy,
-    from: query.from || null,
-    to: query.to || null,
-    totalRevenue: rows.reduce((sum, r) => sum + r.revenue, 0),
-    totalOrders: rows.reduce((sum, r) => sum + r.orderCount, 0),
-    rows,
-  };
 };
 
 // UC29 - top sản phẩm bán chạy
@@ -82,12 +74,11 @@ const getTopProducts = async (shopId, query) => {
       $group: {
         _id: "$items.productId",
         productName: { $last: "$items.productName" },
-        quantitySold: { $sum: "$items.quantity" },
+        quantity: { $sum: "$items.quantity" },
         revenue: { $sum: "$items.subtotal" },
-        orderCount: { $sum: 1 },
       },
     },
-    { $sort: { quantitySold: -1, revenue: -1 } },
+    { $sort: { quantity: -1, revenue: -1 } },
     { $limit: limit },
     {
       $lookup: {
@@ -97,6 +88,7 @@ const getTopProducts = async (shopId, query) => {
         as: "product",
       },
     },
+    // [{ productId, productName, quantity, revenue }]
     {
       $project: {
         _id: 0,
@@ -105,11 +97,8 @@ const getTopProducts = async (shopId, query) => {
         productName: {
           $ifNull: [{ $first: "$product.productName" }, "$productName"],
         },
-        image: { $first: { $first: "$product.images" } },
-        price: { $first: "$product.price" },
-        quantitySold: 1,
+        quantity: 1,
         revenue: 1,
-        orderCount: 1,
       },
     },
   ]);

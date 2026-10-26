@@ -50,11 +50,4 @@ const validateUpdate = (req, res, next) => {
   next();
 };
 
-const validateStatus = (req, res, next) => {
-  if (!STATUSES.includes(req.body.status)) {
-    return next(new AppError(400, "status phải là ACTIVE hoặc INACTIVE"));
-  }
-  next();
-};
-
-module.exports = { validateCreate, validateUpdate, validateStatus };
+module.exports = { validateCreate, validateUpdate };

@@ -1,7 +1,7 @@
-const Product = require("./product.model.js");
-const Category = require("../category/category.model.js");
-const Shop = require("../shop/shop.model.js");
-const categoryService = require("../category/category.service.js");
+const Product = require("../../models/product.model.js");
+const Category = require("../../models/category.model.js");
+const Shop = require("../../models/shop.model.js");
+const categoryService = require("../categories/category.service.js");
 const AppError = require("../../common/errors/AppError.js");
 const {
   escapeRegex,
@@ -170,28 +170,7 @@ const getPublicProductById = async (productId) => {
   return formatProductDetail(product);
 };
 
-// UC28 - trang shop: thông tin shop, danh mục và sản phẩm
-const getShopPage = async (shopId, query) => {
-  assertObjectId(shopId, "shopId");
-
-  const shop = await Shop.findOne({ _id: shopId, ...VISIBLE_SHOP }).select(
-    "shopName address phone logoUrl bannerUrl operationStatus createdAt",
-  );
-  if (!shop) {
-    throw new AppError(404, "Shop không tồn tại hoặc đang tạm ngưng hoạt động");
-  }
-
-  const [categories, products] = await Promise.all([
-    Category.find({ shopId, status: "ACTIVE" })
-      .select("categoryName description")
-      .sort({ categoryName: 1 }),
-    getPublicProducts({ ...query, shopId }),
-  ]);
-
-  return { shop, categories, ...products };
-};
-
-/* ---------- Shop Owner ---------- */
+/* ---------- Shop Owner / Staff ---------- */
 
 // chủ shop xem sản phẩm của shop mình (kể cả HIDDEN)
 // ?categoryId=&productStatus=&keyword=&outOfStock=true&sort=&page=&limit=
@@ -291,9 +270,9 @@ const updateProductStatus = async (shopId, productId, productStatus) => {
 };
 
 module.exports = {
+  VISIBLE_SHOP,
   getPublicProducts,
   getPublicProductById,
-  getShopPage,
   getMyProducts,
   getMyProductById,
   createProduct,

@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const router = require("./routes.js");
-const { UPLOAD_ROOT } = require("./common/utils/upload.js");
+const { UPLOAD_ROOT } = require("./common/middlewares/upload.js");
 const { notFound, errorHandler } = require("./common/errors/errorHandler.js");
 
 const app = express();

@@ -1,7 +1,9 @@
 const express = require("express");
-const categoryRouter = require("./modules/category/category.routes.js");
-const productRouter = require("./modules/product/product.routes.js");
-const statisticRouter = require("./modules/statistic/statistic.routes.js");
+const categoryRouter = require("./modules/categories/category.routes.js");
+const productRouter = require("./modules/products/product.routes.js");
+const myshopProductRouter = require("./modules/products/myshop-product.routes.js");
+const shopRouter = require("./modules/shops/shop.routes.js");
+const shopStatsRouter = require("./modules/statistics/shop-stats.routes.js");
 
 const router = express.Router();
 
@@ -9,6 +11,8 @@ const router = express.Router();
 // Luồng 3
 router.use(categoryRouter);
 router.use(productRouter);
-router.use(statisticRouter);
+router.use(myshopProductRouter);
+router.use(shopRouter);
+router.use(shopStatsRouter);
 
 module.exports = router;

@@ -1,5 +1,4 @@
-const Category = require("./category.model.js");
-const Shop = require("../shop/shop.model.js");
+const Category = require("../../models/category.model.js");
 const AppError = require("../../common/errors/AppError.js");
 const { escapeRegex, assertObjectId } = require("../../common/utils/query.js");
 
@@ -36,19 +35,11 @@ const getMyCategories = async (shopId, { status, keyword }) => {
   return Category.find(filter).sort({ createdAt: -1 });
 };
 
-// danh mục ACTIVE của 1 shop đang hoạt động (cho khách lọc sản phẩm)
-const getPublicCategories = async ({ shopId }) => {
-  const shopFilter = { approvalStatus: "APPROVED", operationStatus: "OPEN" };
-  if (shopId) {
-    assertObjectId(shopId, "shopId");
-    shopFilter._id = shopId;
-  }
-  const shopIds = await Shop.find(shopFilter).distinct("_id");
-
-  return Category.find({ shopId: { $in: shopIds }, status: "ACTIVE" })
-    .select("shopId categoryName description")
+// danh mục ACTIVE của 1 shop (cho khách xem trang shop, lọc sản phẩm)
+const getActiveCategories = async (shopId) =>
+  Category.find({ shopId, status: "ACTIVE" })
+    .select("categoryName description")
     .sort({ categoryName: 1 });
-};
 
 // UC21 - thêm danh mục
 const createCategory = async (shopId, { categoryName, description }) => {
@@ -70,18 +61,10 @@ const updateCategory = async (shopId, categoryId, data) => {
   return category.save();
 };
 
-// UC21 - ngưng / mở lại danh mục
-const updateCategoryStatus = async (shopId, categoryId, status) => {
-  const category = await findOwnCategory(shopId, categoryId);
-  category.status = status;
-  return category.save();
-};
-
 module.exports = {
   findOwnCategory,
   getMyCategories,
-  getPublicCategories,
+  getActiveCategories,
   createCategory,
   updateCategory,
-  updateCategoryStatus,
 };

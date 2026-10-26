@@ -99,7 +99,7 @@ const validateUpdate = (req, res, next) => {
     if (body.productStatus !== undefined) {
       throw new AppError(
         400,
-        "Dùng PATCH /api/products/:id/status để ẩn / hiện sản phẩm",
+        "Dùng PATCH /api/myshop/products/:id/status để ẩn / hiện sản phẩm",
       );
     }
 

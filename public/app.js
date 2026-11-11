@@ -446,7 +446,32 @@
   function renderCartUI() {
     const container = $('#cart-groups-container');
     const badge = $('#nav-cart-count');
-    const items = state.cart?.items || [];
+    const rawItems = state.cart?.items || [];
+
+    // Normalize items to extract product details whether productId is populated or object
+    const items = rawItems.map((entry) => {
+      const p = (entry.productId && typeof entry.productId === 'object') ? entry.productId : {};
+      const prodId = String(p._id || entry.productId || '');
+      const prodName = p.productName || entry.productName || 'Trái cây tươi';
+      const prodPrice = Number(p.price !== undefined ? p.price : (entry.price || 0));
+      const prodImages = p.images || entry.images || [];
+      const prodShop = p.shopId || entry.shopId || {};
+      const shopId = String(prodShop._id || prodShop || 'default');
+      const shopName = prodShop.shopName || (state.shops.find((s) => String(s._id) === shopId)?.shopName) || 'Cửa hàng';
+      const quantity = Number(entry.quantity) || 1;
+      const subtotal = entry.subtotal !== undefined ? Number(entry.subtotal) : (prodPrice * quantity);
+
+      return {
+        prodId,
+        prodName,
+        prodPrice,
+        prodImages,
+        shopId,
+        shopName,
+        quantity,
+        subtotal,
+      };
+    });
 
     const totalQty = items.reduce((sum, item) => sum + item.quantity, 0);
     if (badge) badge.textContent = totalQty;
@@ -462,17 +487,17 @@
     // Group items by shop
     const grouped = {};
     items.forEach((item) => {
-      const sid = String(item.shopId?._id || item.shopId || 'default');
-      const sname = item.shopId?.shopName || 'Cửa hàng';
-      if (!grouped[sid]) grouped[sid] = { name: sname, items: [] };
-      grouped[sid].items.push(item);
+      if (!grouped[item.shopId]) {
+        grouped[item.shopId] = { name: item.shopName, items: [] };
+      }
+      grouped[item.shopId].items.push(item);
     });
 
     let grandTotal = 0;
     let html = '';
 
     Object.entries(grouped).forEach(([sid, group]) => {
-      const groupSubtotal = group.items.reduce((s, it) => s + (it.price * it.quantity), 0);
+      const groupSubtotal = group.items.reduce((s, it) => s + (it.prodPrice * it.quantity), 0);
       grandTotal += groupSubtotal;
 
       html += `
@@ -483,18 +508,18 @@
           </div>
           ${group.items.map((item) => `
             <div class="cart-item-row">
-              <div class="cart-item-img">${item.images && item.images[0] ? `<img src="${item.images[0]}" style="width:100%; height:100%; object-fit:cover; border-radius:4px;" />` : '🍎'}</div>
+              <div class="cart-item-img">${item.prodImages && item.prodImages[0] ? `<img src="${item.prodImages[0]}" style="width:100%; height:100%; object-fit:cover; border-radius:4px;" />` : '🍎'}</div>
               <div>
-                <strong>${escapeHtml(item.productName)}</strong>
-                <div style="font-size: 12px; color: var(--muted);">${formatVND(item.price)} / kg</div>
+                <strong>${escapeHtml(item.prodName)}</strong>
+                <div style="font-size: 12px; color: var(--muted);">${formatVND(item.prodPrice)} / kg</div>
               </div>
               <div class="qty-ctrl">
-                <button class="qty-btn" onclick="window.__updateCartQty('${item.productId?._id || item.productId}', ${item.quantity - 1})">-</button>
+                <button class="qty-btn" onclick="window.__updateCartQty('${item.prodId}', ${item.quantity - 1})">-</button>
                 <input class="qty-input" value="${item.quantity}" readonly />
-                <button class="qty-btn" onclick="window.__updateCartQty('${item.productId?._id || item.productId}', ${item.quantity + 1})">+</button>
+                <button class="qty-btn" onclick="window.__updateCartQty('${item.prodId}', ${item.quantity + 1})">+</button>
               </div>
-              <strong style="color: var(--green);">${formatVND(item.price * item.quantity)}</strong>
-              <button class="button-text" style="color: var(--red); font-size: 16px;" onclick="window.__removeCartItem('${item.productId?._id || item.productId}')" title="Xóa món">✕</button>
+              <strong style="color: var(--green);">${formatVND(item.prodPrice * item.quantity)}</strong>
+              <button class="button-text" style="color: var(--red); font-size: 16px;" onclick="window.__removeCartItem('${item.prodId}')" title="Xóa món">✕</button>
             </div>
           `).join('')}
         </div>
@@ -504,7 +529,7 @@
     container.innerHTML = html;
     $('#checkout-total-items').textContent = totalQty;
     $('#checkout-total-shops').textContent = Object.keys(grouped).length;
-    $('#checkout-total-price').textContent = formatVND(grandTotal);
+    $('#checkout-total-price').textContent = formatVND(state.cart?.totalAmount || grandTotal);
 
     if (state.user?.phone && $('#checkout-phone')) {
       $('#checkout-phone').value = state.user.phone;

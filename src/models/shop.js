@@ -10,7 +10,7 @@ const shopSchema = new Schema(
     bannerUrl: { type: String },
     approvalStatus: {
       type: String,
-      enum: ["PENDING", "APPROVED", "REJECTED"],
+      enum: ["PENDING", "APPROVED", "REJECTED", "SUSPENDED"],
       default: "PENDING",
     },
     operationStatus: {

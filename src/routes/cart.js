@@ -1,0 +1,13 @@
+const express = require("express");
+const controller = require("../controllers/cart");
+const { authenticate, allowRoles } = require("../middleware/auth");
+const router = express.Router();
+router.use("/cart", authenticate, allowRoles("CUSTOMER", "STAFF", "SHOP_OWNER", "ADMIN"));
+router.get("/cart", controller.getCart);
+router.post("/cart/items", controller.addItem);
+router.post("/cart", controller.addItem);
+router.patch("/cart/items/:productId", controller.setItemQuantity);
+router.put("/cart/items/:productId", controller.setItemQuantity);
+router.delete("/cart/items/:productId", controller.removeItem);
+router.delete("/cart", controller.clearCart);
+module.exports = router;

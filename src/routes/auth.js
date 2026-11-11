@@ -1,0 +1,13 @@
+const express = require("express");
+const { register, login, me, updateMe, listUsers, updateAccountStatus } = require("../controllers/auth");
+const { authenticate, allowRoles } = require("../middleware/auth");
+const router = express.Router();
+router.post("/auth/register", register);
+router.post("/auth/login", login);
+router.get("/auth/me", authenticate, me);
+router.patch("/auth/me", authenticate, updateMe);
+router.get("/admin/users", authenticate, allowRoles("ADMIN"), listUsers);
+router.patch("/admin/users/:id/status", authenticate, allowRoles("ADMIN"), updateAccountStatus);
+router.get("/users", authenticate, allowRoles("ADMIN"), listUsers);
+router.patch("/users/:id", authenticate, allowRoles("ADMIN"), updateAccountStatus);
+module.exports = router;

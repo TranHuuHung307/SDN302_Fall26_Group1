@@ -1,0 +1,16 @@
+const express = require("express");
+const controller = require("../controllers/inventory");
+const { authenticate, allowRoles } = require("../middleware/auth");
+const router = express.Router();
+const scopedRoles = ["ADMIN", "SHOP_OWNER", "STAFF"];
+const setType = (type) => (req, res, next) => { req.body = { ...req.body, type }; next(); };
+router.use("/shops/:shopId/stock-transactions", authenticate, allowRoles("ADMIN", "SHOP_OWNER", "STAFF"));
+router.get("/shops/:shopId/stock-transactions", controller.listTransactions);
+router.post("/shops/:shopId/stock-transactions", controller.createTransaction);
+router.get(["/myshop/inventory/transactions", "/inventory/transactions"], authenticate, allowRoles(...scopedRoles), controller.listTransactions);
+router.post(["/myshop/inventory/import", "/inventory/import"], authenticate, allowRoles(...scopedRoles), setType("IMPORT"), controller.createTransaction);
+router.post(["/myshop/inventory/export", "/inventory/export"], authenticate, allowRoles(...scopedRoles), setType("EXPORT"), controller.createTransaction);
+router.get(["/myshop/inventory/alerts", "/inventory/alerts"], authenticate, allowRoles(...scopedRoles), controller.getAlerts);
+router.post("/products/:id/stock", authenticate, allowRoles(...scopedRoles), controller.changeProductStock);
+router.get("/products/:id/stock-transactions", authenticate, allowRoles(...scopedRoles), controller.listProductTransactions);
+module.exports = router;

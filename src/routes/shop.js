@@ -1,0 +1,18 @@
+const express = require("express");
+const controller = require("../controllers/shop");
+const { authenticate, allowRoles } = require("../middleware/auth");
+const router = express.Router();
+router.get("/shops", controller.listShops);
+router.get("/admin/shops", authenticate, allowRoles("ADMIN"), controller.listAdminShops);
+router.patch("/admin/shops/:id/status", authenticate, allowRoles("ADMIN"), controller.updateShopApprovalStatus);
+router.get("/shops/:id", controller.getShop);
+router.patch("/shops/:id", authenticate, allowRoles("ADMIN", "SHOP_OWNER"), controller.updateShop);
+router.post("/shop-requests", authenticate, allowRoles("CUSTOMER"), controller.requestShop);
+router.get("/shop-requests/mine", authenticate, controller.myRequests);
+router.get("/admin/shop-requests", authenticate, allowRoles("ADMIN"), controller.listRequests);
+router.get("/shop-requests", authenticate, allowRoles("ADMIN"), controller.listRequests);
+router.patch("/admin/shop-requests/:id/review", authenticate, allowRoles("ADMIN"), controller.reviewRequest);
+router.get("/shops/:shopId/staff", authenticate, allowRoles("ADMIN", "SHOP_OWNER"), controller.listStaff);
+router.post("/shops/:shopId/staff", authenticate, allowRoles("ADMIN", "SHOP_OWNER"), controller.addStaff);
+router.delete("/shops/:shopId/staff/:userId", authenticate, allowRoles("ADMIN", "SHOP_OWNER"), controller.removeStaff);
+module.exports = router;

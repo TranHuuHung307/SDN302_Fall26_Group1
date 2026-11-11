@@ -40,7 +40,7 @@
     owner: { email: 'mai.tran@fruitfresh.vn', password: '123456', roleName: 'Shop Owner' },
     inventory: { email: 'ha.pham@fruitfresh.vn', password: '123456', roleName: 'Nhân viên Kho' },
     order: { email: 'quan.do@fruitfresh.vn', password: '123456', roleName: 'Nhân viên Đơn hàng' },
-    customer: { email: 'minh.dao@fruitfresh.vn', password: '123456', roleName: 'Khách hàng' },
+    customer: { email: 'bao.hoang@gmail.com', password: '123456', roleName: 'Khách hàng' },
   };
 
   // -------------------------------------------------------------

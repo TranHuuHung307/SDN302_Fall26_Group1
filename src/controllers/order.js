@@ -95,12 +95,13 @@ async function listOrders(req, res, next) {
     const page = Math.max(Number.parseInt(req.query.page, 10) || 1, 1);
     const limit = Math.min(Math.max(Number.parseInt(req.query.limit, 10) || 20, 1), 100);
     const filter = {};
-    if (req.user.role === "CUSTOMER") filter.customerId = req.user._id;
-    else if (req.query.shopId) {
+    if (req.query.shopId) {
       if (!validId(req.query.shopId)) return res.status(400).json({ success: false, message: "Invalid shopId." });
       if (!await canManageShop(req.user, req.query.shopId, ["ORDER_STAFF"])) return res.status(403).json({ success: false, message: "No access to this shop." });
       filter.shopId = req.query.shopId;
-    } else if (req.user.role === "SHOP_OWNER" || req.user.role === "STAFF") return res.status(400).json({ success: false, message: "shopId is required for shop order lists." });
+    } else {
+      filter.customerId = req.user._id;
+    }
     const requestedStatus = req.query.status || req.query.orderStatus;
     if (requestedStatus) {
       if (!orderStatuses.includes(String(requestedStatus).toUpperCase())) return res.status(400).json({ success: false, message: "Invalid order status." });

@@ -451,7 +451,7 @@
     if (badge) badge.textContent = totalQty;
 
     if (!items.length) {
-      container.innerHTML = '<div style="text-align: center; padding: 48px; color: var(--muted);"><p style="font-size: 40px; margin: 0;">🛒</p><p>Giỏ hàng của bạn đang trống.</p><button class="button button-primary button-sm" onclick="window.__switchTab(\\'products\\')">Tiếp tục mua sắm</button></div>';
+      container.innerHTML = '<div style="text-align: center; padding: 48px; color: var(--muted);"><p style="font-size: 40px; margin: 0;">🛒</p><p>Giỏ hàng của bạn đang trống.</p><button class="button button-primary button-sm" onclick="window.__switchTab(\'products\')">Tiếp tục mua sắm</button></div>';
       $('#checkout-total-items').textContent = '0';
       $('#checkout-total-shops').textContent = '0';
       $('#checkout-total-price').textContent = '0 đ';
@@ -1688,5 +1688,9 @@
     setInterval(loadNotifications, 30000);
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

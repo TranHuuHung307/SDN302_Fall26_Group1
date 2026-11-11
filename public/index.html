@@ -7,8 +7,8 @@
     <meta name="theme-color" content="#25583b" />
     <title>Fruit Fresh Commerce — Nền tảng trái cây tươi</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css" />
-    <script src="/app.js" defer></script>
+    <link rel="stylesheet" href="/styles.css?v=3.1" />
+    <script src="/app.js?v=3.1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Bỏ qua điều hướng</a>
@@ -797,15 +797,25 @@
               <input class="form-control" id="login-password" type="password" required placeholder="Nhập mật khẩu..." />
             </div>
             <button class="button button-primary" type="submit" style="width: 100%;">Đăng nhập</button>
-            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; align-items: center;">
-              <span>Tài khoản mẫu kiểm thử:</span>
-              <select id="quick-demo-select" class="form-control" style="width: auto; padding: 4px 8px; font-size: 12px;">
-                <option value="">-- Điền nhanh tài khoản --</option>
-                <option value="admin">👑 Quản trị viên (Admin)</option>
-                <option value="owner">🏪 Chủ cửa hàng (Shop Owner)</option>
-                <option value="inventory">📦 Nhân viên Kho</option>
-                <option value="order">🚚 Nhân viên Đơn hàng</option>
-                <option value="customer">🛒 Khách hàng</option>
+            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-weight: 600; color: var(--text);">Tài khoản mẫu kiểm thử:</span>
+                <span style="color: var(--muted); font-size: 11px;">Mật khẩu: <code style="background: var(--bg-soft); padding: 1px 4px; border-radius: 4px;">123456</code></span>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;">
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="customer">🛒 Khách hàng</button>
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="owner">🏪 Chủ shop</button>
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="order">🚚 Nhân viên Đơn</button>
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="inventory">📦 Nhân viên Kho</button>
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="admin">👑 Admin</button>
+              </div>
+              <select id="quick-demo-select" class="form-control" style="width: 100%; padding: 6px 10px; font-size: 12px;">
+                <option value="">-- Hoặc chọn điền nhanh từ danh sách --</option>
+                <option value="customer">🛒 Khách hàng (bao.hoang@gmail.com)</option>
+                <option value="owner">🏪 Chủ shop (mai.tran@fruitfresh.vn)</option>
+                <option value="order">🚚 Nhân viên Đơn (quan.do@fruitfresh.vn)</option>
+                <option value="inventory">📦 Nhân viên Kho (ha.pham@fruitfresh.vn)</option>
+                <option value="admin">👑 Quản trị viên (admin@fruitfresh.vn)</option>
               </select>
             </div>
           </form>

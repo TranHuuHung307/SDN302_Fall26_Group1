@@ -208,6 +208,8 @@
   async function quickLogin(roleKey) {
     const creds = DEMO_USERS[roleKey];
     if (!creds) return;
+    if ($('#login-email')) $('#login-email').value = creds.email;
+    if ($('#login-password')) $('#login-password').value = creds.password;
     try {
       const res = await api('/auth/login', {
         method: 'POST',
@@ -1244,8 +1246,15 @@
 
     window.__switchTab = switchView;
 
-    // Quick Demo Role Switcher
-    $('#quick-demo-select').addEventListener('change', (e) => {
+    // Quick Demo Role Switcher (Buttons & Select)
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.quick-login-btn');
+      if (btn && btn.dataset.role) {
+        quickLogin(btn.dataset.role);
+      }
+    });
+
+    $('#quick-demo-select')?.addEventListener('change', (e) => {
       const roleKey = e.target.value;
       if (roleKey) quickLogin(roleKey);
       e.target.value = '';

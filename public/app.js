@@ -803,7 +803,7 @@
       const canCancel = ['PENDING', 'CONFIRMED', 'PREPARING'].includes(order.orderStatus);
 
       if (isPending) {
-        actionButtons += `<button class="button button-primary button-sm" onclick="window.__confirmShopOrder('${order._id}')" title="Xác nhận đơn và trừ kho">✓ Xác nhận đơn (UC43)</button> `;
+        actionButtons += `<button class="button button-primary button-sm" onclick="window.__confirmShopOrder('${order._id}')" title="Xác nhận đơn và trừ kho">✓ Xác nhận đơn</button> `;
       } else if (isConfirmed) {
         actionButtons += `<button class="button button-secondary button-sm" onclick="window.__advanceShopOrderStatus('${order._id}', 'PREPARING')">📦 Đóng gói xong</button> `;
       } else if (isPreparing) {
@@ -813,7 +813,7 @@
       }
 
       if (canCancel) {
-        actionButtons += `<button class="button button-danger button-sm" onclick="window.__openCancelOrderModal('${order._id}', 'shop')">Hủy đơn (UC45)</button>`;
+        actionButtons += `<button class="button button-danger button-sm" onclick="window.__openCancelOrderModal('${order._id}', 'shop')">Hủy đơn</button>`;
       }
 
       return `

@@ -167,18 +167,23 @@
 
     if (state.user) {
       accountNameEl.textContent = state.user.fullName || state.user.email;
-      accountRoleEl.textContent = state.user.role;
-      accountRoleEl.hidden = false;
-      btnLogout.hidden = false;
-
       const isStaff = state.user.role === 'STAFF';
+      const staffRole = state.user.staffRole;
       const isOwner = state.user.role === 'SHOP_OWNER';
       const isAdmin = state.user.role === 'ADMIN';
       const isCustomer = state.user.role === 'CUSTOMER';
 
+      let displayRole = state.user.role;
+      if (isStaff && staffRole) {
+        displayRole = staffRole === 'ORDER_STAFF' ? 'STAFF (Đơn hàng)' : 'STAFF (Kho hàng)';
+      }
+      accountRoleEl.textContent = displayRole;
+      accountRoleEl.hidden = false;
+      btnLogout.hidden = false;
+
       tabOrders.hidden = false;
-      tabInv.hidden = !(isOwner || isStaff || isAdmin);
-      tabShopOrders.hidden = !(isOwner || isStaff || isAdmin);
+      tabInv.hidden = !(isOwner || isAdmin || (isStaff && (!staffRole || staffRole === 'INVENTORY_STAFF')));
+      tabShopOrders.hidden = !(isOwner || isAdmin || (isStaff && (!staffRole || staffRole === 'ORDER_STAFF')));
       tabShopManage.hidden = !(isOwner || isAdmin);
       tabAdmin.hidden = !isAdmin;
       if (btnRequestShop) btnRequestShop.hidden = !isCustomer;

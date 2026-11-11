@@ -1,16 +1,27 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const ShopStaff = require("../models/shopStaff");
 const { tokenSecret } = require("../middleware/auth");
 
-const publicUser = (user) => ({
-  _id: user._id,
-  fullName: user.fullName,
-  email: user.email,
-  phone: user.phone,
-  role: user.role,
-  accountStatus: user.accountStatus,
-});
+async function publicUser(user) {
+  const data = {
+    _id: user._id,
+    fullName: user.fullName,
+    email: user.email,
+    phone: user.phone,
+    role: user.role,
+    accountStatus: user.accountStatus,
+  };
+  if (user.role === "STAFF") {
+    const staff = await ShopStaff.findOne({ userId: user._id }).lean();
+    if (staff) {
+      data.staffRole = staff.role;
+      data.shopId = staff.shopId;
+    }
+  }
+  return data;
+}
 
 async function register(req, res, next) {
   try {
@@ -33,7 +44,7 @@ async function register(req, res, next) {
       role: "CUSTOMER",
     });
     const token = jwt.sign({ sub: user._id.toString(), role: user.role }, tokenSecret(), { expiresIn: "12h" });
-    return res.status(201).json({ success: true, data: { token, tokenType: "Bearer", expiresIn: 43200, user: publicUser(user) } });
+    return res.status(201).json({ success: true, data: { token, tokenType: "Bearer", expiresIn: 43200, user: await publicUser(user) } });
   } catch (error) { return next(error); }
 }
 
@@ -48,12 +59,14 @@ async function login(req, res, next) {
       return res.status(401).json({ success: false, message: "Email or password is incorrect." });
     }
     const token = jwt.sign({ sub: user._id.toString(), role: user.role }, tokenSecret(), { expiresIn: "12h" });
-    return res.json({ success: true, data: { token, tokenType: "Bearer", expiresIn: 43200, user: publicUser(user) } });
+    return res.json({ success: true, data: { token, tokenType: "Bearer", expiresIn: 43200, user: await publicUser(user) } });
   } catch (error) { return next(error); }
 }
 
-function me(req, res) {
-  return res.json({ success: true, data: publicUser(req.user) });
+async function me(req, res, next) {
+  try {
+    return res.json({ success: true, data: await publicUser(req.user) });
+  } catch (error) { return next(error); }
 }
 
 async function updateMe(req, res, next) {
@@ -75,7 +88,7 @@ async function updateMe(req, res, next) {
     }
     if (!Object.keys(updates).length) return res.status(400).json({ success: false, message: "No supported fields were provided." });
     const user = await require("../models/user").findByIdAndUpdate(req.user._id, updates, { new: true, runValidators: true }).select("-password");
-    return res.json({ success: true, data: publicUser(user) });
+    return res.json({ success: true, data: await publicUser(user) });
   } catch (error) { return next(error); }
 }
 

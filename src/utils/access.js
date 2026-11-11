@@ -10,8 +10,7 @@ async function canManageShop(user, shopId, permittedStaffRoles = []) {
   if (user.role === "SHOP_OWNER" && String(shop.ownerId) === String(user._id)) return true;
   if (user.role === "STAFF") {
     if (permittedStaffRoles.length) {
-      const hasRole = Boolean(await ShopStaff.exists({ shopId, userId: user._id, role: { $in: permittedStaffRoles } }));
-      if (hasRole) return true;
+      return Boolean(await ShopStaff.exists({ shopId, userId: user._id, role: { $in: permittedStaffRoles } }));
     }
     return Boolean(await ShopStaff.exists({ shopId, userId: user._id }));
   }
@@ -43,6 +42,7 @@ async function resolveShopScope(user, requestedShopId, permittedStaffRoles = [])
       const assignments = await ShopStaff.find({ userId: user._id, role: { $in: permittedStaffRoles } }).select("shopId").lean();
       if (assignments.length === 1) return { shopId: assignments[0].shopId };
       if (assignments.length > 1) return { error: { status: 400, message: "shopId is required because you are assigned to multiple shops." } };
+      return { error: { status: 403, message: "Staff role not permitted for this action." } };
     }
     const anyAssignment = await ShopStaff.find({ userId: user._id }).select("shopId").lean();
     if (anyAssignment.length === 1) return { shopId: anyAssignment[0].shopId };

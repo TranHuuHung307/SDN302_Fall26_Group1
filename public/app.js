@@ -34,12 +34,12 @@
     unreadCount: 0,
   };
 
-  // Demo user credentials for 1-click test
+  // Demo user credentials for test
   const DEMO_USERS = {
     admin: { email: 'admin@fruitfresh.vn', password: 'change_me', roleName: 'Admin' },
     owner: { email: 'mai.tran@fruitfresh.vn', password: 'change_me', roleName: 'Shop Owner' },
-    inventory: { email: 'ha.pham@fruitfresh.vn', password: 'change_me', roleName: 'Nhân viên Kho (L5)' },
-    order: { email: 'quan.do@fruitfresh.vn', password: 'change_me', roleName: 'Nhân viên Đơn (L5)' },
+    inventory: { email: 'ha.pham@fruitfresh.vn', password: 'change_me', roleName: 'Nhân viên Kho' },
+    order: { email: 'quan.do@fruitfresh.vn', password: 'change_me', roleName: 'Nhân viên Đơn hàng' },
     customer: { email: 'minh.dao@fruitfresh.vn', password: 'change_me', roleName: 'Khách hàng' },
   };
 
@@ -209,6 +209,7 @@
         body: { email: creds.email, password: creds.password },
       });
       setSession(res.data.token, res.data.user);
+      $('#auth-dialog')?.close();
       // Automatically switch to the most relevant view for this role!
       if (roleKey === 'inventory') switchView('inventory');
       else if (roleKey === 'order') switchView('shop-orders');
@@ -216,7 +217,7 @@
       else if (roleKey === 'admin') switchView('admin');
       else switchView('products');
     } catch (err) {
-      toast(`Đăng nhập demo thất bại: ${err.message}`, 'error');
+      toast(`Đăng nhập thất bại: ${err.message}`, 'error');
     }
   }
 

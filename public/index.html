@@ -3,474 +3,1111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Chọn trái cây tươi từ các cửa hàng và đặt hàng trực tuyến." />
-    <meta name="theme-color" content="#f5f5ef" />
-    <title>Vườn Mùa — Trái cây tươi mỗi ngày</title>
+    <meta name="description" content="Fruit Fresh Commerce Platform - Nền tảng thương mại trái cây tươi" />
+    <meta name="theme-color" content="#25583b" />
+    <title>Fruit Fresh Commerce — Nền tảng trái cây tươi</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/styles.css" />
     <script src="/app.js" defer></script>
-    <script src="/customer.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Bỏ qua điều hướng</a>
     <div class="app-shell">
+      <!-- TOPBAR -->
       <header class="topbar">
-        <a class="brand" href="/" aria-label="Vườn Mùa, trang chủ">
+        <a class="brand" href="/" aria-label="Fruit Fresh, trang chủ">
           <span class="brand-mark" aria-hidden="true">
             <svg viewBox="0 0 32 32" fill="none">
               <path d="M16 26.5c-5.6 0-9.4-3.7-9.4-9.1 0-5.2 3.8-9 9.4-9s9.4 3.8 9.4 9c0 5.4-3.8 9.1-9.4 9.1Z" fill="currentColor" />
-              <path d="M16.1 8.6c-.1-3 1.4-5.2 4.6-6.2-.1 3.1-1.7 5.3-4.6 6.2Z" fill="#d9a34c" />
+              <path d="M16.1 8.6c-.1-3 1.4-5.2 4.6-6.2-.1 3.1-1.7 5.3-4.6 6.2Z" fill="#d99a2c" />
               <path d="M16 24.2c-.3-5 1.2-8.7 4.4-11.3M15.9 19.4c-1.1-2.1-2.6-3.6-4.8-4.6" stroke="#f5f5ef" stroke-width="1.5" stroke-linecap="round" />
             </svg>
           </span>
-          <span class="brand-copy"><strong>vườn mùa</strong><small>fruit commerce</small></span>
+          <span class="brand-copy">
+            <strong>Fruit Fresh</strong>
+            <small>Commerce Platform</small>
+          </span>
         </a>
 
-        <nav class="primary-nav" aria-label="Điều hướng chính" role="tablist">
-          <button class="nav-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="products-view" id="products-tab" data-view="products">
-            <span class="nav-index">01</span> Cửa hàng
+        <!-- PRIMARY NAV -->
+        <nav class="primary-nav" id="main-nav" role="tablist">
+          <button class="nav-tab is-active" type="button" role="tab" data-view="products" id="tab-products">
+            🍎 Cửa hàng
           </button>
-          <button class="nav-tab" type="button" role="tab" aria-selected="false" aria-controls="cart-view" id="cart-tab" data-view="cart">
-            <span class="nav-index">02</span> Giỏ hàng <span class="cart-pill-count" id="nav-cart-count">0</span>
+          <button class="nav-tab" type="button" role="tab" data-view="cart" id="tab-cart">
+            🛒 Giỏ hàng <span class="badge-count" id="nav-cart-count">0</span>
           </button>
-          <button class="nav-tab" type="button" role="tab" aria-selected="false" aria-controls="orders-view" id="orders-tab" data-view="orders">
-            <span class="nav-index">03</span> Đơn hàng của tôi
+          <button class="nav-tab" type="button" role="tab" data-view="orders" id="tab-orders" hidden>
+            📦 Đơn của tôi
           </button>
-          <button class="nav-tab" type="button" role="tab" aria-selected="false" aria-controls="categories-view" id="categories-tab" data-view="categories" hidden>
-            <span class="nav-index">04</span> Quản lý danh mục
+          <button class="nav-tab" type="button" role="tab" data-view="inventory" id="tab-inventory" hidden>
+            📦 Kho hàng (L5)
+          </button>
+          <button class="nav-tab" type="button" role="tab" data-view="shop-orders" id="tab-shop-orders" hidden>
+            📋 Xử lý đơn shop (L5)
+          </button>
+          <button class="nav-tab" type="button" role="tab" data-view="shop-manage" id="tab-shop-manage" hidden>
+            🏬 Quản lý Shop
+          </button>
+          <button class="nav-tab" type="button" role="tab" data-view="admin" id="tab-admin" hidden>
+            🛡️ Quản trị sàn (Admin)
           </button>
         </nav>
 
-        <div class="account-actions">
-          <button class="account-trigger" id="account-label" type="button">Đăng nhập / Đăng ký</button>
-          <button class="button button-text cart-trigger" id="cart-trigger" type="button">
-            Giỏ hàng <span class="cart-count" id="cart-count">0</span>
+        <!-- TOP ACTIONS -->
+        <div class="topbar-actions">
+          <!-- QUICK DEMO LOGIN PICKER ( cực kỳ tiện để test các vai trò ) -->
+          <div class="demo-role-select" title="Chuyển nhanh vai trò để test dự án">
+            <span>⚡ Demo:</span>
+            <select id="quick-demo-select">
+              <option value="">-- Đăng nhập nhanh --</option>
+              <option value="admin">👑 Admin (Quản trị sàn)</option>
+              <option value="owner">🏪 Shop Owner (Chủ shop)</option>
+              <option value="inventory">📦 Nhân viên Kho (Luồng 5)</option>
+              <option value="order">🚚 Nhân viên Đơn (Luồng 5)</option>
+              <option value="customer">🛒 Khách hàng</option>
+            </select>
+          </div>
+
+          <!-- NOTIFICATION BELL -->
+          <button class="btn-icon" id="btn-notifications" type="button" aria-label="Xem thông báo" title="Thông báo hệ thống">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="noti-badge" id="noti-unread-count" hidden>0</span>
           </button>
-          <button class="button button-text account-logout" id="account-logout" type="button" hidden>Đăng xuất</button>
-        </div>
-        <div class="connection" id="connection-status" data-state="loading" aria-live="polite">
-          <span class="connection-dot" aria-hidden="true"></span>
-          <span id="connection-label">Đang kết nối</span>
+
+          <!-- ACCOUNT BUTTON -->
+          <button class="account-pill" id="account-btn" type="button">
+            <span id="account-user-name">Đăng nhập</span>
+            <span class="user-role" id="account-user-role" hidden>Khách</span>
+          </button>
+
+          <button class="button button-text button-sm" id="btn-logout" type="button" hidden>
+            Đăng xuất
+          </button>
         </div>
       </header>
 
-      <!-- Modal Đăng nhập / Đăng ký -->
-      <dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title">
-        <div class="auth-card">
-          <button class="auth-close" id="auth-close" type="button" aria-label="Đóng">×</button>
-          <p class="eyebrow"><span class="eyebrow-line"></span> Vườn Mùa · Tài khoản</p>
-          <h2 id="auth-title">Chào mừng bạn trở lại</h2>
-          <p class="auth-intro" id="auth-intro">Đăng nhập để tiếp tục mua sắm và theo dõi đơn hàng.</p>
-          <div class="auth-switch" role="tablist" aria-label="Chọn đăng nhập hoặc đăng ký">
-            <button class="is-active" id="login-mode" type="button" role="tab" aria-selected="true">Đăng nhập</button>
-            <button id="register-mode" type="button" role="tab" aria-selected="false">Tạo tài khoản</button>
-          </div>
-          <form id="account-form">
-            <label class="auth-field" id="name-row" hidden>
-              <span>Họ và tên</span>
-              <input id="account-name" name="fullName" type="text" autocomplete="name" maxlength="100" />
-            </label>
-            <label class="auth-field">
-              <span>Email</span>
-              <input id="account-email" name="email" type="email" required autocomplete="email" placeholder="ban@example.com" />
-            </label>
-            <label class="auth-field">
-              <span>Mật khẩu</span>
-              <input id="account-password" name="password" type="password" required autocomplete="current-password" placeholder="Nhập mật khẩu" />
-            </label>
-            <label class="auth-field" id="phone-row" hidden>
-              <span>Số điện thoại</span>
-              <input id="account-phone" name="phone" type="tel" placeholder="09xxxxxxxx" />
-            </label>
-            <p class="auth-hint" id="auth-hint">Dùng email và mật khẩu đã đăng ký.</p>
-            <p class="auth-message" id="auth-message" aria-live="polite"></p>
-            <button class="button button-primary auth-submit" id="account-submit" type="submit">Đăng nhập</button>
-          </form>
-          <p class="auth-footnote">Tạo tài khoản mới sẽ bắt đầu với vai trò khách hàng (Customer).</p>
-        </div>
-      </dialog>
-
-      <!-- Modal Xem chi tiết & Theo dõi đơn hàng (UC36) -->
-      <dialog class="auth-dialog" id="order-detail-dialog" aria-labelledby="detail-title">
-        <div class="auth-card order-detail-card">
-          <button class="auth-close" id="detail-close" type="button" aria-label="Đóng">×</button>
-          <p class="eyebrow"><span class="eyebrow-line"></span> Chi tiết & Theo dõi đơn hàng</p>
-          <h2 id="detail-title">Đơn hàng #<span id="detail-order-id">—</span></h2>
-          <p class="auth-intro" id="detail-order-shop">Cửa hàng: —</p>
-
-          <!-- Stepper theo dõi tiến trình đơn hàng (UC36) -->
-          <div class="order-stepper" id="detail-stepper">
-            <div class="stepper-step" data-step="PENDING">
-              <div class="stepper-circle">1</div>
-              <span class="stepper-label">Chờ duyệt</span>
-            </div>
-            <div class="stepper-step" data-step="CONFIRMED">
-              <div class="stepper-circle">2</div>
-              <span class="stepper-label">Đã xác nhận</span>
-            </div>
-            <div class="stepper-step" data-step="PREPARING">
-              <div class="stepper-circle">3</div>
-              <span class="stepper-label">Đóng gói</span>
-            </div>
-            <div class="stepper-step" data-step="SHIPPING">
-              <div class="stepper-circle">4</div>
-              <span class="stepper-label">Đang giao</span>
-            </div>
-            <div class="stepper-step" data-step="DELIVERED">
-              <div class="stepper-circle">5</div>
-              <span class="stepper-label">Đã giao</span>
-            </div>
-          </div>
-          <div id="detail-cancelled-notice" class="order-cancelled-banner" hidden>
-            <span>⚠️ Đơn hàng này đã bị hủy. Tồn kho đã được hoàn lại.</span>
-          </div>
-
-          <div class="order-detail-meta-grid">
-            <div class="order-detail-meta-item">
-              <strong>Địa chỉ nhận hàng</strong>
-              <span id="detail-address">—</span>
-            </div>
-            <div class="order-detail-meta-item">
-              <strong>Số điện thoại</strong>
-              <span id="detail-phone">—</span>
-            </div>
-            <div class="order-detail-meta-item">
-              <strong>Phương thức thanh toán</strong>
-              <span id="detail-payment-method">—</span>
-            </div>
-            <div class="order-detail-meta-item">
-              <strong>Trạng thái thanh toán</strong>
-              <span id="detail-payment-status">—</span>
-            </div>
-          </div>
-
-          <table class="order-detail-items-table">
-            <thead>
-              <tr>
-                <th>Sản phẩm</th>
-                <th>Đơn giá</th>
-                <th style="text-align: center;">SL</th>
-                <th>Thành tiền</th>
-              </tr>
-            </thead>
-            <tbody id="detail-items-body"></tbody>
-          </table>
-
-          <div class="order-detail-total-row">
-            <span>Tổng cộng</span>
-            <strong id="detail-total-amount">0 ₫</strong>
-          </div>
-
-          <div class="modal-actions" id="detail-actions">
-            <!-- Nút hành động thanh toán (UC34) hoặc hủy đơn (UC37) được render động -->
-          </div>
-        </div>
-      </dialog>
-
-      <!-- Modal Giả lập thanh toán trực tuyến (UC34) -->
-      <dialog class="auth-dialog" id="pay-dialog" aria-labelledby="pay-title">
-        <div class="auth-card">
-          <button class="auth-close" id="pay-close" type="button" aria-label="Đóng">×</button>
-          <p class="eyebrow"><span class="eyebrow-line"></span> Cổng thanh toán giả lập (MOCK ONLINE)</p>
-          <h2 id="pay-title">Xác nhận thanh toán</h2>
-          <p class="auth-intro">Mô phỏng thanh toán trực tuyến cho đơn hàng của bạn.</p>
-          <div style="margin: 20px 0; padding: 16px; background: var(--surface-muted); border-radius: 12px; font-size: 13px;">
-            <p style="margin: 0 0 8px;"><strong>Mã đơn hàng:</strong> <span id="pay-order-code">—</span></p>
-            <p style="margin: 0 0 8px;"><strong>Cửa hàng:</strong> <span id="pay-shop-name">—</span></p>
-            <p style="margin: 0; font-size: 16px;"><strong>Số tiền cần thanh toán:</strong> <strong id="pay-amount" style="color: var(--green);">—</strong></p>
-          </div>
-          <p style="font-size: 12px; color: var(--muted); margin-bottom: 20px;">
-            ℹ️ Hệ thống không kết nối cổng ngân hàng thực tế. Khi bấm nút dưới đây, đơn hàng sẽ được cập nhật trạng thái đã thanh toán (PAID).
-          </p>
-          <div class="modal-actions">
-            <button class="button button-text" id="pay-cancel-btn" type="button">Để sau</button>
-            <button class="button button-primary" id="pay-confirm-btn" type="button">Xác nhận thanh toán ngay</button>
-          </div>
-        </div>
-      </dialog>
-
-      <!-- Modal Xác nhận hủy đơn hàng (UC37) -->
-      <dialog class="auth-dialog" id="cancel-dialog" aria-labelledby="cancel-title">
-        <div class="auth-card">
-          <button class="auth-close" id="cancel-close" type="button" aria-label="Đóng">×</button>
-          <p class="eyebrow" style="color: var(--red);"><span class="eyebrow-line" style="background: var(--red);"></span> Hủy đơn hàng</p>
-          <h2 id="cancel-title">Xác nhận hủy đơn</h2>
-          <p class="auth-intro">Bạn có chắc chắn muốn hủy đơn hàng <strong id="cancel-order-code">—</strong>?</p>
-          <div style="margin: 16px 0; padding: 14px; background: var(--red-pale); border-radius: 10px; font-size: 12px; color: #833f34; line-height: 1.5;">
-            ⚠️ <strong>Lưu ý:</strong> Sau khi hủy, đơn hàng sẽ không thể phục hồi. Toàn bộ số lượng sản phẩm sẽ được hoàn lại vào kho của Shop. Nếu đơn hàng đã được thanh toán trực tuyến, trạng thái thanh toán sẽ được chuyển sang <strong>HOÀN TIỀN (REFUNDED)</strong>.
-          </div>
-          <div class="modal-actions">
-            <button class="button button-text" id="cancel-abort-btn" type="button">Giữ đơn hàng</button>
-            <button class="button button-primary" id="cancel-confirm-btn" style="background: var(--red);" type="button">Xác nhận hủy đơn</button>
-          </div>
-        </div>
-      </dialog>
-
+      <!-- MAIN CONTENT -->
       <main id="main-content">
-        <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
-
-        <!-- ================= VIEW 1: CỬA HÀNG (PRODUCTS) - UC30 ================= -->
-        <section class="view is-visible" id="products-view" role="tabpanel" aria-labelledby="products-tab">
-          <div class="page-intro product-intro">
+        <!-- ========================================== -->
+        <!-- VIEW 1: PRODUCTS STOREFRONT (CỬA HÀNG) -->
+        <!-- ========================================== -->
+        <section class="view is-visible" id="products-view" role="tabpanel">
+          <div class="page-intro">
             <div>
-              <p class="eyebrow"><span class="eyebrow-line"></span> Trái cây tươi ngon từ các nhà vườn</p>
-              <h1>Chọn vị tươi <em>mỗi ngày.</em></h1>
-              <p class="intro-copy">Khám phá trái cây sạch theo mùa, kiểm tra giá và tồn kho khả dụng. Chọn số lượng và thêm vào giỏ hàng dễ dàng.</p>
+              <p class="eyebrow"><span class="eyebrow-line"></span> Nền tảng trái cây tươi sạch</p>
+              <h1>Khám phá trái cây theo mùa</h1>
+              <p>Trái cây đặc sản chọn lọc từ các nhà vườn và cửa hàng uy tín trên toàn quốc.</p>
             </div>
-            <div class="product-total">
-              <strong id="product-view-total">—</strong>
-              <span>mặt hàng</span>
+            <div style="text-align: right;">
+              <span class="badge badge-stock" id="store-stats-badge" style="font-size: 13px; padding: 6px 14px;">Đang tải...</span>
+              <button class="button button-secondary button-sm" id="btn-request-shop-trigger" style="margin-top: 6px; display: block;" hidden>
+                🏪 Mở shop bán hàng ngay
+              </button>
             </div>
           </div>
 
-          <div class="product-toolbar">
-            <label class="search-box">
-              <span class="sr-only">Tìm sản phẩm</span>
-              <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.8"/><path d="m13 13 4 4"/></svg>
-              <input id="product-search" type="search" placeholder="Tìm tên sản phẩm…" autocomplete="off" />
-            </label>
-            <label class="select-box">
-              <span class="sr-only">Lọc category</span>
-              <select id="product-category-filter"><option value="">Tất cả danh mục</option></select>
-            </label>
-            <label class="select-box">
-              <span class="sr-only">Lọc shop</span>
-              <select id="product-shop-filter"><option value="">Tất cả shop</option></select>
-            </label>
+          <!-- TOOLBAR -->
+          <div class="toolbar">
+            <div class="toolbar-left">
+              <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input id="product-search-input" type="search" placeholder="Tìm kiếm tên trái cây..." autocomplete="off" />
+              </div>
+              <select class="select-filter" id="product-category-select">
+                <option value="">Tất cả danh mục</option>
+              </select>
+              <select class="select-filter" id="product-shop-select">
+                <option value="">Tất cả cửa hàng</option>
+              </select>
+            </div>
+            <div class="toolbar-right">
+              <select class="select-filter" id="product-sort-select">
+                <option value="newest">Mới nhất</option>
+                <option value="price-asc">Giá tăng dần</option>
+                <option value="price-desc">Giá giảm dần</option>
+              </select>
+              <button class="button button-secondary button-sm" id="btn-refresh-products" type="button">🔄 Làm mới</button>
+            </div>
           </div>
 
-          <!-- Grid danh sách sản phẩm với nút thêm giỏ hàng (UC30) -->
-          <div class="product-grid" id="product-grid">
-            <div class="product-loading">Đang tải sản phẩm…</div>
+          <!-- PRODUCT GRID -->
+          <div class="product-grid" id="product-grid-container">
+            <div style="grid-column: 1/-1; text-align: center; padding: 48px; color: var(--muted);">Đang tải sản phẩm...</div>
           </div>
         </section>
 
-        <!-- ================= VIEW 2: GIỎ HÀNG (CART) - UC31, UC32, UC33 ================= -->
-        <section class="view" id="cart-view" role="tabpanel" aria-labelledby="cart-tab" hidden>
+        <!-- ========================================== -->
+        <!-- VIEW 2: CART & CHECKOUT (GIỎ HÀNG) -->
+        <!-- ========================================== -->
+        <section class="view" id="cart-view" role="tabpanel">
           <div class="page-intro">
             <div>
-              <p class="eyebrow"><span class="eyebrow-line"></span> Giỏ hàng của bạn (UC31 - UC33)</p>
-              <h2>Giỏ hàng & Đặt hàng</h2>
-              <p class="intro-copy">Kiểm tra các món đã chọn, điều chỉnh số lượng hoặc tiến hành đặt hàng thanh toán.</p>
+              <p class="eyebrow"><span class="eyebrow-line"></span> Giỏ hàng của bạn</p>
+              <h1>Giỏ hàng & Đặt hàng</h1>
+              <p>Xem lại các sản phẩm trái cây tươi ngon bạn đã chọn và tiến hành đặt hàng.</p>
+            </div>
+            <button class="button button-text button-sm" id="btn-clear-cart" style="color: var(--red);">🗑️ Xóa sạch giỏ hàng</button>
+          </div>
+
+          <div class="cart-layout">
+            <!-- CART ITEMS LIST -->
+            <div class="cart-card" id="cart-items-panel">
+              <div id="cart-groups-container">
+                <div style="text-align: center; padding: 40px; color: var(--muted);">Giỏ hàng đang trống.</div>
+              </div>
+            </div>
+
+            <!-- CHECKOUT FORM CARD -->
+            <div class="checkout-card" id="checkout-panel">
+              <h3 style="margin: 0 0 16px; font-family: 'Manrope', sans-serif;">Thông tin giao nhận</h3>
+              <form id="checkout-form">
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <label for="checkout-address">Địa chỉ giao hàng <span>*</span></label>
+                  <input class="form-control" id="checkout-address" name="shippingAddress" required placeholder="Số nhà, tên đường, phường/xã..." />
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                  <label for="checkout-phone">Số điện thoại liên hệ <span>*</span></label>
+                  <input class="form-control" id="checkout-phone" name="phone" type="tel" required placeholder="09xxxxxxxx" />
+                </div>
+                <div class="form-group" style="margin-bottom: 18px;">
+                  <label>Phương thức thanh toán</label>
+                  <div style="display: grid; gap: 8px; margin-top: 4px;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                      <input type="radio" name="paymentMethod" value="COD" checked />
+                      <span><strong>COD</strong> - Thanh toán tiền mặt khi nhận hàng</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                      <input type="radio" name="paymentMethod" value="ONLINE" />
+                      <span><strong>ONLINE</strong> - Thanh toán trực tuyến giả lập (1-click)</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div style="border-top: 1px dashed var(--line); padding: 14px 0; margin-bottom: 16px; display: grid; gap: 8px;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--muted);">Số lượng sản phẩm:</span>
+                    <strong id="checkout-total-items">0</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--muted);">Số cửa hàng tách đơn:</span>
+                    <strong id="checkout-total-shops">0</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 16px; margin-top: 4px;">
+                    <span>Tổng thanh toán:</span>
+                    <strong class="product-price" id="checkout-total-price">0 đ</strong>
+                  </div>
+                </div>
+
+                <button class="button button-primary" id="btn-submit-order" type="submit" style="width: 100%; min-height: 44px; font-size: 15px;">
+                  🚀 Đặt hàng ngay
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: CUSTOMER ORDERS (ĐƠN HÀNG CỦA TÔI) -->
+        <!-- ========================================== -->
+        <section class="view" id="orders-view" role="tabpanel">
+          <div class="page-intro">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span> Lịch sử mua sắm</p>
+              <h1>Theo dõi đơn hàng</h1>
+              <p>Xem trạng thái xử lý, vận chuyển và chi tiết các đơn hàng của bạn.</p>
+            </div>
+            <button class="button button-secondary button-sm" id="btn-refresh-customer-orders">🔄 Làm mới</button>
+          </div>
+
+          <!-- ORDER FILTER TABS -->
+          <div class="subnav" id="customer-order-filters">
+            <button class="subnav-btn is-active" data-status="">Tất cả đơn</button>
+            <button class="subnav-btn" data-status="PENDING">Chờ xác nhận</button>
+            <button class="subnav-btn" data-status="CONFIRMED">Đã xác nhận</button>
+            <button class="subnav-btn" data-status="PREPARING">Đang đóng gói</button>
+            <button class="subnav-btn" data-status="SHIPPING">Đang giao hàng</button>
+            <button class="subnav-btn" data-status="DELIVERED">Đã giao thành công</button>
+            <button class="subnav-btn" data-status="CANCELLED">Đã hủy</button>
+          </div>
+
+          <div id="customer-orders-container" style="display: grid; gap: 16px;">
+            <div style="text-align: center; padding: 40px; color: var(--muted);">Đang tải đơn hàng...</div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 4: INVENTORY MANAGEMENT (KHO HÀNG - LUỒNG 5 / HƯNG) -->
+        <!-- ========================================== -->
+        <section class="view" id="inventory-view" role="tabpanel">
+          <div class="page-intro">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span> Luồng 5 · Quản lý Kho</p>
+              <h1>Quản lý Kho hàng & Tồn kho</h1>
+              <p>Nhập kho, xuất hủy hàng hỏng/quá hạn, theo dõi biến động kho và cảnh báo tự động.</p>
             </div>
             <div style="display: flex; gap: 8px;">
-              <button class="button button-text" id="refresh-cart" type="button">🔄 Làm mới giỏ</button>
-              <button class="button button-text" id="clear-all-cart" type="button" style="color: var(--red);">🗑️ Xóa tất cả</button>
+              <button class="button button-secondary button-sm" id="btn-refresh-inventory">🔄 Làm mới kho</button>
             </div>
           </div>
 
-          <div class="cart-view-layout">
-            <!-- Cột trái: Danh sách sản phẩm nhóm theo Shop (UC31, UC32) & Form Checkout (UC33) -->
-            <div class="cart-main-col">
-              <div id="cart-content">
-                <!-- Được render động từ customer.js -->
+          <!-- INVENTORY KPI CARDS -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-label">Tổng mặt hàng trong shop</div>
+              <div class="kpi-value" id="kpi-inv-total-products">0</div>
+              <div class="kpi-sub">Sản phẩm đang quản lý</div>
+            </div>
+            <div class="kpi-card kpi-danger">
+              <div class="kpi-label">Cảnh báo hết hàng (Tồn = 0)</div>
+              <div class="kpi-value" id="kpi-inv-out-of-stock" style="color: var(--red);">0</div>
+              <div class="kpi-sub">Cần bổ sung nguồn hàng</div>
+            </div>
+            <div class="kpi-card kpi-warning">
+              <div class="kpi-label">Cảnh báo cận hạn (&le; 3 ngày)</div>
+              <div class="kpi-value" id="kpi-inv-near-expiry" style="color: var(--gold-text);">0</div>
+              <div class="kpi-sub">Cần ưu tiên xuất bán hoặc xử lý</div>
+            </div>
+          </div>
+
+          <!-- SUBNAV FOR INVENTORY -->
+          <div class="subnav" id="inv-subnav">
+            <button class="subnav-btn is-active" data-inv-tab="transactions">📋 Lịch sử giao dịch kho (UC40)</button>
+            <button class="subnav-btn" data-inv-tab="import">📥 Nhập kho hàng mới (UC38)</button>
+            <button class="subnav-btn" data-inv-tab="export">📤 Xuất hủy hàng hỏng/hết hạn (UC39)</button>
+            <button class="subnav-btn" data-inv-tab="alerts">⚠️ Danh sách cảnh báo kho (UC41)</button>
+          </div>
+
+          <!-- TAB 1: TRANSACTIONS HISTORY -->
+          <div class="inv-tab-content" id="inv-tab-transactions">
+            <div class="toolbar" style="padding: 10px 16px;">
+              <div class="toolbar-left">
+                <select class="select-filter" id="inv-filter-type">
+                  <option value="">Tất cả loại giao dịch</option>
+                  <option value="IMPORT">Nhập kho (IMPORT)</option>
+                  <option value="EXPORT">Xuất kho / hủy (EXPORT)</option>
+                </select>
+                <select class="select-filter" id="inv-filter-product">
+                  <option value="">Tất cả sản phẩm</option>
+                </select>
               </div>
-
-              <!-- Form Checkout Đặt hàng (UC33) -->
-              <div class="checkout-card" id="checkout-section" hidden>
-                <h3>Thông tin đặt hàng (Checkout)</h3>
-                <p class="checkout-intro">Vui lòng điền địa chỉ giao hàng và phương thức thanh toán để tạo đơn.</p>
-
-                <div class="checkout-notice-split">
-                  <span>ℹ️ <strong>Tách đơn tự động:</strong> Giỏ hàng của bạn có sản phẩm từ nhiều cửa hàng khác nhau. Khi đặt hàng, hệ thống sẽ tự động tách thành từng đơn riêng tương ứng với mỗi Shop.</span>
-                </div>
-
-                <form id="checkout-form">
-                  <div class="checkout-form-grid">
-                    <div class="checkout-form-group span-2">
-                      <label for="shipping-address">Địa chỉ giao hàng (shippingAddress) <span>*</span></label>
-                      <input id="shipping-address" name="shippingAddress" required maxlength="300" placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/TP" />
-                    </div>
-
-                    <div class="checkout-form-group">
-                      <label for="shipping-phone">Số điện thoại nhận hàng (phone) <span>*</span></label>
-                      <input id="shipping-phone" name="phone" required type="tel" placeholder="09xxxxxxxx" />
-                    </div>
-
-                    <div class="checkout-form-group">
-                      <label>Phương thức thanh toán</label>
-                      <div class="payment-selector">
-                        <label class="payment-radio-card is-selected">
-                          <input type="radio" name="paymentMethod" value="COD" checked />
-                          <div class="payment-radio-label">
-                            <strong>Tiền mặt (COD)</strong>
-                            <small>Trả tiền khi nhận hàng</small>
-                          </div>
-                        </label>
-                        <label class="payment-radio-card">
-                          <input type="radio" name="paymentMethod" value="ONLINE" />
-                          <div class="payment-radio-label">
-                            <strong>Trực tuyến (ONLINE)</strong>
-                            <small>Giả lập thanh toán ngay</small>
-                          </div>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style="display: flex; justify-content: flex-end; gap: 12px; align-items: center;">
-                    <button class="button button-primary" id="submit-checkout-btn" type="submit" style="min-height: 48px; padding: 0 32px; font-size: 15px;">
-                      Xác nhận Đặt hàng ↗
-                    </button>
-                  </div>
-                </form>
+              <div class="toolbar-right">
+                <button class="button button-primary button-sm" id="btn-quick-import-trigger">+ Nhập hàng ngay</button>
               </div>
-              <details class="shop-request">
-                <summary>Đăng ký mở shop</summary>
-                <form id="shop-request-form">
-                  <label for="request-shop-name">Tên shop</label>
-                  <input id="request-shop-name" required maxlength="120" />
-                  <label for="request-shop-description">Mô tả</label>
-                  <textarea id="request-shop-description" rows="3" maxlength="500"></textarea>
-                  <button class="button button-primary" type="submit">Gửi yêu cầu duyệt</button>
-                </form>
-              </details>
             </div>
 
-            <!-- Cột phải: Tóm tắt thanh toán -->
-            <div class="cart-sidebar-col">
-              <div class="cart-summary-card">
-                <div class="cart-summary-title">Tóm tắt đơn hàng</div>
-                <div class="cart-summary-line">
-                  <span>Tổng số sản phẩm</span>
-                  <strong id="summary-items-count">0</strong>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Thời gian</th>
+                    <th>Loại giao dịch</th>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Ghi chú</th>
+                    <th>Người thực hiện</th>
+                  </tr>
+                </thead>
+                <tbody id="inv-transactions-body">
+                  <tr><td colspan="6" style="text-align: center; color: var(--muted); padding: 30px;">Chưa có giao dịch kho nào.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 2: IMPORT FORM -->
+          <div class="inv-tab-content" id="inv-tab-import" hidden>
+            <div class="cart-card" style="max-width: 600px; margin: 0 auto;">
+              <h3 style="margin-top: 0; font-family: 'Manrope', sans-serif;">📥 Nhập kho sản phẩm (UC38)</h3>
+              <p style="color: var(--muted); margin-bottom: 20px;">Cộng dồn số lượng tồn kho và ghi nhận lịch sử giao dịch IMPORT.</p>
+              <form id="form-import-stock">
+                <div class="form-group" style="margin-bottom: 14px;">
+                  <label for="import-product-select">Chọn sản phẩm nhập kho <span>*</span></label>
+                  <select class="form-control" id="import-product-select" required></select>
                 </div>
-                <div class="cart-summary-line">
-                  <span>Số cửa hàng đặt</span>
-                  <strong id="summary-shops-count">0</strong>
+                <div class="form-group" style="margin-bottom: 14px;">
+                  <label for="import-quantity">Số lượng nhập (kg / phần) <span>*</span></label>
+                  <input class="form-control" id="import-quantity" type="number" min="1" required placeholder="Ví dụ: 50" />
                 </div>
-                <div class="cart-summary-line">
-                  <span>Phí vận chuyển</span>
-                  <span>Miễn phí</span>
+                <div class="form-group" style="margin-bottom: 20px;">
+                  <label for="import-note">Ghi chú lô hàng nhập</label>
+                  <textarea class="form-control" id="import-note" rows="3" placeholder="Ví dụ: Lô trái cây nhập sáng sớm từ nhà vườn Đà Lạt..."></textarea>
                 </div>
-                <div class="cart-summary-total">
-                  <span>Tạm tính</span>
-                  <strong id="summary-total-amount">0 ₫</strong>
+                <button class="button button-primary" type="submit" style="width: 100%;">
+                  Xác nhận nhập kho (+ Tồn kho)
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- TAB 3: EXPORT FORM -->
+          <div class="inv-tab-content" id="inv-tab-export" hidden>
+            <div class="cart-card" style="max-width: 600px; margin: 0 auto;">
+              <h3 style="margin-top: 0; font-family: 'Manrope', sans-serif;">📤 Xuất hủy hàng hỏng / quá hạn (UC39)</h3>
+              <p style="color: var(--muted); margin-bottom: 20px;">Trừ tồn kho và ghi nhận lịch sử EXPORT. Hệ thống sẽ chặn nếu xuất quá số lượng tồn kho.</p>
+              <form id="form-export-stock">
+                <div class="form-group" style="margin-bottom: 14px;">
+                  <label for="export-product-select">Chọn sản phẩm xuất hủy <span>*</span></label>
+                  <select class="form-control" id="export-product-select" required></select>
                 </div>
-                <div class="cart-summary-actions">
-                  <button class="button button-primary" id="btn-proceed-checkout" type="button">Tiến hành đặt hàng</button>
-                  <button class="button button-text" id="btn-back-to-shop" type="button">Tiếp tục chọn thêm</button>
+                <div class="form-group" style="margin-bottom: 14px;">
+                  <label for="export-quantity">Số lượng xuất hủy <span>*</span></label>
+                  <input class="form-control" id="export-quantity" type="number" min="1" required placeholder="Ví dụ: 5" />
                 </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                  <label for="export-note">Lý do xuất hủy <span>*</span></label>
+                  <textarea class="form-control" id="export-note" rows="3" required placeholder="Ví dụ: Hàng bị dập nát trong bảo quản, quá hạn sử dụng..."></textarea>
+                </div>
+                <button class="button button-danger" type="submit" style="width: 100%;">
+                  Xác nhận xuất hủy (- Tồn kho)
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- TAB 4: ALERTS TAB -->
+          <div class="inv-tab-content" id="inv-tab-alerts" hidden>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <!-- OUT OF STOCK -->
+              <div class="table-wrap">
+                <div style="padding: 14px 18px; border-bottom: 1px solid var(--line); background: var(--red-pale); display: flex; justify-content: space-between; align-items: center;">
+                  <strong style="color: var(--red-text);">🚨 Sản phẩm đã hết hàng (Tồn = 0)</strong>
+                  <span class="badge badge-out-of-stock" id="badge-alert-out-count">0 sản phẩm</span>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Sản phẩm</th>
+                      <th>Danh mục</th>
+                      <th>Hành động</th>
+                    </tr>
+                  </thead>
+                  <tbody id="alert-out-of-stock-body">
+                    <tr><td colspan="3" style="text-align: center; color: var(--muted); padding: 20px;">Không có sản phẩm nào hết hàng.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- NEAR EXPIRY -->
+              <div class="table-wrap">
+                <div style="padding: 14px 18px; border-bottom: 1px solid var(--line); background: var(--gold-pale); display: flex; justify-content: space-between; align-items: center;">
+                  <strong style="color: var(--gold-text);">⏳ Sản phẩm cận hạn (&le; 3 ngày)</strong>
+                  <span class="badge badge-near-expiry" id="badge-alert-expiry-count">0 sản phẩm</span>
+                </div>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Sản phẩm</th>
+                      <th>Hạn sử dụng</th>
+                      <th>Tồn kho</th>
+                    </tr>
+                  </thead>
+                  <tbody id="alert-near-expiry-body">
+                    <tr><td colspan="3" style="text-align: center; color: var(--muted); padding: 20px;">Không có sản phẩm nào cận hạn.</td></tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ================= VIEW 3: ĐƠN HÀNG CỦA TÔI (ORDERS) - UC34, UC35, UC36, UC37 ================= -->
-        <section class="view" id="orders-view" role="tabpanel" aria-labelledby="orders-tab" hidden>
+        <!-- ========================================== -->
+        <!-- VIEW 5: SHOP ORDER PROCESSING (XỬ LÝ ĐƠN - LUỒNG 5 / HƯNG) -->
+        <!-- ========================================== -->
+        <section class="view" id="shop-orders-view" role="tabpanel">
           <div class="page-intro">
             <div>
-              <p class="eyebrow"><span class="eyebrow-line"></span> Lịch sử mua sắm (UC34 - UC37)</p>
-              <h2>Đơn hàng của tôi</h2>
-              <p class="intro-copy">Theo dõi tình trạng xử lý đơn hàng, thanh toán trực tuyến hoặc hủy đơn khi còn PENDING.</p>
+              <p class="eyebrow"><span class="eyebrow-line"></span> Luồng 5 · Xử lý đơn Shop</p>
+              <h1>Đơn hàng của Cửa hàng</h1>
+              <p>Tiếp nhận, xác nhận đơn (tự động trừ kho), điều phối giao hàng và xử lý hủy hoàn tiền.</p>
             </div>
-            <button class="button button-text" id="refresh-orders" type="button">🔄 Làm mới danh sách</button>
+            <button class="button button-secondary button-sm" id="btn-refresh-shop-orders">🔄 Làm mới đơn shop</button>
           </div>
 
-          <!-- Bộ lọc trạng thái đơn hàng (UC35) -->
-          <div class="orders-filter-bar" id="orders-filter-bar">
-            <button class="filter-pill is-active" data-status="">Tất cả</button>
-            <button class="filter-pill" data-status="PENDING">Chờ xác nhận</button>
-            <button class="filter-pill" data-status="CONFIRMED">Đã xác nhận</button>
-            <button class="filter-pill" data-status="PREPARING">Đang đóng gói</button>
-            <button class="filter-pill" data-status="SHIPPING">Đang giao hàng</button>
-            <button class="filter-pill" data-status="DELIVERED">Đã giao thành công</button>
-            <button class="filter-pill" data-status="CANCELLED">Đã hủy</button>
+          <!-- SHOP ORDER FILTER TABS -->
+          <div class="subnav" id="shop-order-filters">
+            <button class="subnav-btn is-active" data-shop-status="">Tất cả đơn</button>
+            <button class="subnav-btn" data-shop-status="PENDING">Chờ xác nhận (PENDING)</button>
+            <button class="subnav-btn" data-shop-status="CONFIRMED">Đã xác nhận (CONFIRMED)</button>
+            <button class="subnav-btn" data-shop-status="PREPARING">Đang chuẩn bị (PREPARING)</button>
+            <button class="subnav-btn" data-shop-status="SHIPPING">Đang giao (SHIPPING)</button>
+            <button class="subnav-btn" data-shop-status="DELIVERED">Đã giao (DELIVERED)</button>
+            <button class="subnav-btn" data-shop-status="CANCELLED">Đã hủy (CANCELLED)</button>
           </div>
 
-          <!-- Danh sách thẻ đơn hàng (UC35) -->
-          <div class="orders-list" id="orders-content">
-            <div class="product-loading">Đang tải đơn hàng…</div>
+          <!-- SHOP ORDERS TABLE -->
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Mã đơn</th>
+                  <th>Ngày đặt</th>
+                  <th>Khách hàng</th>
+                  <th>Địa chỉ & SĐT</th>
+                  <th>Tổng tiền</th>
+                  <th>Thanh toán</th>
+                  <th>Trạng thái đơn</th>
+                  <th>Thao tác nghiệp vụ</th>
+                </tr>
+              </thead>
+              <tbody id="shop-orders-table-body">
+                <tr><td colspan="8" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải danh sách đơn hàng của shop...</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
-        <!-- ================= VIEW 4: QUẢN LÝ DANH MỤC (CATEGORIES) ================= -->
-        <section class="view" id="categories-view" role="tabpanel" aria-labelledby="categories-tab" hidden>
+        <!-- ========================================== -->
+        <!-- VIEW 6: SHOP MANAGEMENT (QUẢN LÝ SHOP - LUỒNG 2 & 3) -->
+        <!-- ========================================== -->
+        <section class="view" id="shop-manage-view" role="tabpanel">
           <div class="page-intro">
             <div>
-              <p class="eyebrow"><span class="eyebrow-line"></span> Hệ thống phân loại</p>
-              <h2>Quản lý danh mục</h2>
-              <p class="intro-copy">Cấu hình danh mục cho từng cửa hàng, kiểm soát hiển thị trên giao diện người mua.</p>
+              <p class="eyebrow"><span class="eyebrow-line"></span> Quản trị Cửa hàng</p>
+              <h1 id="manage-shop-heading">Quản lý Cửa hàng của bạn</h1>
+              <p>Quản lý thông tin cửa hàng, danh mục hàng, sản phẩm, nhân viên và doanh thu bán hàng.</p>
             </div>
-            <button class="button button-primary" id="new-category" type="button">Thêm danh mục mới +</button>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span class="badge" id="shop-operation-status-badge">Đang mở cửa</span>
+              <button class="button button-secondary button-sm" id="btn-toggle-shop-op-status">Đóng cửa shop</button>
+            </div>
           </div>
 
-          <div class="category-workspace">
-            <div class="table-container">
-              <div class="panel-topline">
-                <div>
-                  <h3>Danh sách phân loại</h3>
-                  <p class="table-hint">Lọc theo tên, cửa hàng hoặc trạng thái hoạt động.</p>
-                </div>
-                <button class="button button-text" id="refresh-data" type="button">Làm mới dữ liệu</button>
-              </div>
+          <!-- SUBNAV FOR SHOP MANAGEMENT -->
+          <div class="subnav" id="shop-manage-subnav">
+            <button class="subnav-btn is-active" data-sm-tab="products">🍇 Quản lý Sản phẩm (UC22-24)</button>
+            <button class="subnav-btn" data-sm-tab="categories">📂 Quản lý Danh mục (UC21)</button>
+            <button class="subnav-btn" data-sm-tab="staff">👥 Nhân viên Shop (UC18)</button>
+            <button class="subnav-btn" data-sm-tab="stats">📊 Doanh thu & Bán chạy (UC29)</button>
+            <button class="subnav-btn" data-sm-tab="profile">⚙️ Thông tin Shop (UC16-17)</button>
+          </div>
 
-              <div class="filter-row">
-                <label class="search-box">
-                  <span class="sr-only">Tìm danh mục</span>
-                  <input id="category-search" type="search" placeholder="Tìm tên hoặc mô tả…" />
-                </label>
-                <label class="select-box">
-                  <span class="sr-only">Chọn cửa hàng</span>
-                  <select id="shop-filter"><option value="">Tất cả shop</option></select>
-                </label>
-                <label class="select-box">
-                  <span class="sr-only">Chọn trạng thái</span>
-                  <select id="status-filter">
-                    <option value="">Tất cả trạng thái</option>
-                    <option value="ACTIVE">Đang hoạt động</option>
-                    <option value="INACTIVE">Đã ẩn</option>
-                  </select>
-                </label>
+          <!-- TAB 1: SHOP PRODUCTS -->
+          <div class="sm-tab-content" id="sm-tab-products">
+            <div class="toolbar">
+              <div class="toolbar-left">
+                <input class="form-control" id="sm-product-search" placeholder="Tìm sản phẩm của shop..." style="max-width: 250px;" />
+                <select class="select-filter" id="sm-product-status-filter">
+                  <option value="">Tất cả trạng thái</option>
+                  <option value="AVAILABLE">Đang bán (AVAILABLE)</option>
+                  <option value="HIDDEN">Đang ẩn (HIDDEN)</option>
+                </select>
               </div>
+              <div class="toolbar-right">
+                <button class="button button-primary button-sm" id="btn-add-product-modal">+ Thêm sản phẩm mới</button>
+              </div>
+            </div>
 
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Danh mục</th>
+                    <th>Giá bán</th>
+                    <th>Tồn kho</th>
+                    <th>Hạn dùng</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="sm-products-table-body">
+                  <tr><td colspan="8" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải sản phẩm...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 2: SHOP CATEGORIES -->
+          <div class="sm-tab-content" id="sm-tab-categories" hidden>
+            <div class="toolbar">
+              <div class="toolbar-left">
+                <input class="form-control" id="sm-category-search" placeholder="Tìm danh mục..." style="max-width: 250px;" />
+              </div>
+              <div class="toolbar-right">
+                <button class="button button-primary button-sm" id="btn-add-category-modal">+ Thêm danh mục mới</button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
               <table class="data-table">
                 <thead>
                   <tr>
                     <th>Tên danh mục</th>
-                    <th>Cửa hàng</th>
                     <th>Mô tả</th>
                     <th>Trạng thái</th>
-                    <th style="text-align: right;">Thao tác</th>
+                    <th>Thao tác</th>
                   </tr>
                 </thead>
-                <tbody id="category-rows"></tbody>
+                <tbody id="sm-categories-table-body">
+                  <tr><td colspan="4" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải danh mục...</td></tr>
+                </tbody>
               </table>
             </div>
+          </div>
 
-            <aside class="form-panel">
-              <div class="form-panel-heading">
-                <p class="eyebrow" id="form-kicker">Tạo mới</p>
-                <h3 id="form-title">Thêm danh mục</h3>
+          <!-- TAB 3: SHOP STAFF -->
+          <div class="sm-tab-content" id="sm-tab-staff" hidden>
+            <div class="toolbar">
+              <div class="toolbar-left">
+                <p style="margin: 0; color: var(--muted); font-size: 13px;">Gán nhân viên vào shop với quyền kiểm kê kho hoặc xử lý đơn hàng.</p>
               </div>
-              <form id="category-form" novalidate>
-                <label class="field-label" for="form-shop">Shop sở hữu <span>*</span></label>
-                <input class="field-control" id="form-shop" name="shopId" list="shop-options" placeholder="Chọn hoặc nhập Shop ID" required />
-                <datalist id="shop-options"></datalist>
-                <label class="field-label" for="form-name">Tên danh mục <span>*</span></label>
-                <input class="field-control" id="form-name" name="categoryName" type="text" maxlength="100" required />
-                <label class="field-label" for="form-description">Mô tả</label>
-                <textarea class="field-control field-textarea" id="form-description" name="description" rows="3" maxlength="500"></textarea>
-                <label class="field-label" for="form-status">Trạng thái</label>
-                <select class="field-control" id="form-status" name="status">
-                  <option value="ACTIVE">Đang hoạt động</option>
-                  <option value="INACTIVE">Ẩn khỏi cửa hàng</option>
-                </select>
-                <p class="form-message" id="form-message" aria-live="polite"></p>
-                <div class="form-actions">
-                  <button class="button button-primary button-save" type="submit" id="save-category">Lưu danh mục</button>
-                  <button class="button button-text" type="button" id="cancel-edit" hidden>Hủy</button>
+              <div class="toolbar-right">
+                <button class="button button-primary button-sm" id="btn-add-staff-modal">+ Thêm nhân viên</button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Vai trò được gán</th>
+                    <th>Ngày tham gia</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="sm-staff-table-body">
+                  <tr><td colspan="6" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải danh sách nhân viên...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 4: SHOP STATS -->
+          <div class="sm-tab-content" id="sm-tab-stats" hidden>
+            <div class="kpi-grid">
+              <div class="kpi-card kpi-blue">
+                <div class="kpi-label">Tổng doanh thu hoàn tất</div>
+                <div class="kpi-value" id="kpi-shop-revenue">0 đ</div>
+                <div class="kpi-sub">Từ các đơn hàng DELIVERED & PAID</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Tổng số đơn thành công</div>
+                <div class="kpi-value" id="kpi-shop-orders-count">0</div>
+                <div class="kpi-sub">Đơn đã giao và thanh toán</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 24px;">
+              <h3 style="font-family: 'Manrope', sans-serif; margin-bottom: 12px;">🏆 Top sản phẩm bán chạy nhất</h3>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Sản phẩm</th>
+                      <th>Số lượng đã bán</th>
+                      <th>Doanh thu mang lại</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sm-top-products-body">
+                    <tr><td colspan="3" style="text-align: center; color: var(--muted); padding: 24px;">Chưa có dữ liệu thống kê.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: SHOP PROFILE -->
+          <div class="sm-tab-content" id="sm-tab-profile" hidden>
+            <div class="cart-card" style="max-width: 650px; margin: 0 auto;">
+              <h3 style="margin-top: 0; font-family: 'Manrope', sans-serif;">Thông tin Cửa hàng (UC16)</h3>
+              <form id="form-update-shop-profile">
+                <div class="form-group" style="margin-bottom: 14px;">
+                  <label for="shop-edit-name">Tên cửa hàng <span>*</span></label>
+                  <input class="form-control" id="shop-edit-name" required />
                 </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                  <label for="shop-edit-address">Địa chỉ shop</label>
+                  <input class="form-control" id="shop-edit-address" placeholder="Địa chỉ cửa hàng..." />
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                  <label for="shop-edit-phone">Số điện thoại hotline</label>
+                  <input class="form-control" id="shop-edit-phone" placeholder="09xxxxxxxx" />
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                  <label for="shop-edit-logo">Logo URL</label>
+                  <input class="form-control" id="shop-edit-logo" placeholder="https://..." />
+                </div>
+                <button class="button button-primary" type="submit">Lưu thay đổi thông tin shop</button>
               </form>
-            </aside>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 7: ADMIN PORTAL (QUẢN TRỊ SÀN - LUỒNG 1 & 2) -->
+        <!-- ========================================== -->
+        <section class="view" id="admin-view" role="tabpanel">
+          <div class="page-intro">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span> Quản trị Hệ thống</p>
+              <h1>Bảng điều khiển Admin</h1>
+              <p>Giám sát toàn diện hệ thống, phê duyệt mở shop, quản lý cửa hàng và người dùng.</p>
+            </div>
+            <button class="button button-secondary button-sm" id="btn-refresh-admin">🔄 Làm mới dữ liệu</button>
+          </div>
+
+          <!-- ADMIN KPI CARDS -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-label">Tổng người dùng sàn</div>
+              <div class="kpi-value" id="kpi-admin-users">0</div>
+              <div class="kpi-sub">Tài khoản khách & đối tác</div>
+            </div>
+            <div class="kpi-card kpi-blue">
+              <div class="kpi-label">Tổng số Shop</div>
+              <div class="kpi-value" id="kpi-admin-shops">0</div>
+              <div class="kpi-sub">Cửa hàng trên sàn</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Tổng số đơn hàng</div>
+              <div class="kpi-value" id="kpi-admin-orders">0</div>
+              <div class="kpi-sub">Đơn phát sinh trên hệ thống</div>
+            </div>
+            <div class="kpi-card kpi-warning">
+              <div class="kpi-label">Tổng doanh thu toàn sàn</div>
+              <div class="kpi-value" id="kpi-admin-revenue">0 đ</div>
+              <div class="kpi-sub">Từ đơn DELIVERED & PAID</div>
+            </div>
+          </div>
+
+          <!-- ADMIN SUBNAV -->
+          <div class="subnav" id="admin-subnav">
+            <button class="subnav-btn is-active" data-admin-tab="requests">🏢 Yêu cầu mở Shop (UC13-15)</button>
+            <button class="subnav-btn" data-admin-tab="shops">🏪 Quản lý các Shop (UC19)</button>
+            <button class="subnav-btn" data-admin-tab="users">👥 Quản lý Người dùng (UC08-09)</button>
+          </div>
+
+          <!-- TAB 1: SHOP REQUESTS -->
+          <div class="admin-tab-content" id="admin-tab-requests">
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Khách gửi yêu cầu</th>
+                    <th>Email / SĐT</th>
+                    <th>Tên shop đề xuất</th>
+                    <th>Mô tả</th>
+                    <th>Ngày gửi</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-requests-table-body">
+                  <tr><td colspan="7" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải yêu cầu mở shop...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 2: ALL SHOPS -->
+          <div class="admin-tab-content" id="admin-tab-shops" hidden>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Tên Shop</th>
+                    <th>Chủ sở hữu</th>
+                    <th>Hotline & Địa chỉ</th>
+                    <th>Trạng thái duyệt</th>
+                    <th>Hoạt động</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-shops-table-body">
+                  <tr><td colspan="6" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải danh sách shop...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 3: ALL USERS -->
+          <div class="admin-tab-content" id="admin-tab-users" hidden>
+            <div class="toolbar">
+              <div class="toolbar-left">
+                <input class="form-control" id="admin-user-search" placeholder="Tìm theo tên, email, SĐT..." style="max-width: 250px;" />
+                <select class="select-filter" id="admin-user-role-filter">
+                  <option value="">Tất cả vai trò</option>
+                  <option value="CUSTOMER">Khách hàng (CUSTOMER)</option>
+                  <option value="SHOP_OWNER">Chủ shop (SHOP_OWNER)</option>
+                  <option value="STAFF">Nhân viên (STAFF)</option>
+                  <option value="ADMIN">Quản trị viên (ADMIN)</option>
+                </select>
+                <select class="select-filter" id="admin-user-status-filter">
+                  <option value="">Tất cả trạng thái</option>
+                  <option value="ACTIVE">Hoạt động (ACTIVE)</option>
+                  <option value="BANNED">Bị khóa (BANNED)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Vai trò</th>
+                    <th>Trạng thái</th>
+                    <th>Ngày tạo</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-users-table-body">
+                  <tr><td colspan="7" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải danh sách người dùng...</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
       </main>
 
+      <!-- SITE FOOTER -->
       <footer class="site-footer">
-        <span>Vườn Mùa <span class="footer-dot">·</span> Fruit Fresh Commerce</span>
-        <span>Phân hệ Khách hàng: Mua hàng, Giỏ hàng & Theo dõi Đơn hàng (UC30 - UC37)</span>
+        <div>
+          <strong>Fruit Fresh Commerce Platform</strong> · Đề tài SDN302 Fall 2026 Nhóm 1
+        </div>
+        <div>
+          Phụ trách Luồng 5: <strong>Trần Hữu Hưng</strong> (Kho hàng & Xử lý đơn phía Shop)
+        </div>
       </footer>
     </div>
+
+    <!-- ================================================================= -->
+    <!-- MODALS & DIALOGS -->
+    <!-- ================================================================= -->
+
+    <!-- AUTH DIALOG (ĐĂNG NHẬP / ĐĂNG KÝ / ĐỔI MẬT KHẨU) -->
+    <dialog id="auth-dialog">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 id="auth-dialog-title">Tài khoản Fruit Fresh</h3>
+          <button class="modal-close" onclick="document.querySelector('#auth-dialog').close()" type="button">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="subnav" style="margin-bottom: 14px;" id="auth-mode-nav">
+            <button class="subnav-btn is-active" id="btn-auth-mode-login" type="button">Đăng nhập</button>
+            <button class="subnav-btn" id="btn-auth-mode-register" type="button">Đăng ký mới</button>
+            <button class="subnav-btn" id="btn-auth-mode-profile" type="button" hidden>Hồ sơ cá nhân</button>
+          </div>
+
+          <!-- LOGIN FORM -->
+          <form id="form-auth-login">
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="login-email">Email đăng nhập <span>*</span></label>
+              <input class="form-control" id="login-email" type="email" required placeholder="nhapemail@example.com" />
+            </div>
+            <div class="form-group" style="margin-bottom: 18px;">
+              <label for="login-password">Mật khẩu <span>*</span></label>
+              <input class="form-control" id="login-password" type="password" required placeholder="Nhập mật khẩu..." />
+            </div>
+            <button class="button button-primary" type="submit" style="width: 100%;">Đăng nhập</button>
+          </form>
+
+          <!-- REGISTER FORM -->
+          <form id="form-auth-register" hidden>
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="reg-name">Họ và tên <span>*</span></label>
+              <input class="form-control" id="reg-name" required placeholder="Nguyễn Văn A" />
+            </div>
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="reg-email">Email <span>*</span></label>
+              <input class="form-control" id="reg-email" type="email" required placeholder="ban@example.com" />
+            </div>
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="reg-phone">Số điện thoại</label>
+              <input class="form-control" id="reg-phone" placeholder="09xxxxxxxx" />
+            </div>
+            <div class="form-group" style="margin-bottom: 18px;">
+              <label for="reg-password">Mật khẩu (ít nhất 6 ký tự) <span>*</span></label>
+              <input class="form-control" id="reg-password" type="password" minlength="6" required placeholder="Mật khẩu..." />
+            </div>
+            <button class="button button-primary" type="submit" style="width: 100%;">Tạo tài khoản</button>
+          </form>
+
+          <!-- PROFILE & CHANGE PASSWORD FORM -->
+          <div id="profile-container" hidden>
+            <form id="form-update-profile" style="margin-bottom: 24px; border-bottom: 1px solid var(--line); padding-bottom: 20px;">
+              <h4 style="margin-top: 0;">Thông tin cá nhân</h4>
+              <div class="form-group" style="margin-bottom: 12px;">
+                <label for="prof-name">Họ và tên</label>
+                <input class="form-control" id="prof-name" required />
+              </div>
+              <div class="form-group" style="margin-bottom: 12px;">
+                <label for="prof-phone">Số điện thoại</label>
+                <input class="form-control" id="prof-phone" />
+              </div>
+              <button class="button button-secondary button-sm" type="submit">Lưu thông tin cá nhân</button>
+            </form>
+
+            <form id="form-change-password">
+              <h4 style="margin-top: 0;">Đổi mật khẩu</h4>
+              <div class="form-group" style="margin-bottom: 12px;">
+                <label for="pwd-current">Mật khẩu hiện tại</label>
+                <input class="form-control" id="pwd-current" type="password" required />
+              </div>
+              <div class="form-group" style="margin-bottom: 14px;">
+                <label for="pwd-new">Mật khẩu mới</label>
+                <input class="form-control" id="pwd-new" type="password" minlength="6" required />
+              </div>
+              <button class="button button-secondary button-sm" type="submit">Đổi mật khẩu</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- NOTIFICATIONS DIALOG -->
+    <dialog id="notifications-dialog">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>🔔 Thông báo hệ thống</h3>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button class="button button-text button-sm" id="btn-read-all-noti">Đánh dấu tất cả đã đọc</button>
+            <button class="modal-close" onclick="document.querySelector('#notifications-dialog').close()" type="button">×</button>
+          </div>
+        </div>
+        <div class="modal-body" id="noti-list-container">
+          <div style="text-align: center; padding: 30px; color: var(--muted);">Không có thông báo nào.</div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ORDER DETAIL DIALOG -->
+    <dialog id="order-detail-dialog">
+      <div class="modal-box modal-lg">
+        <div class="modal-header">
+          <h3>Chi tiết đơn hàng #<span id="dlg-order-id">-</span></h3>
+          <button class="modal-close" onclick="document.querySelector('#order-detail-dialog').close()" type="button">×</button>
+        </div>
+        <div class="modal-body">
+          <!-- STEPPER -->
+          <div class="stepper" id="dlg-order-stepper">
+            <div class="step-item" id="step-PENDING"><div class="step-dot">1</div><div class="step-label">Chờ xác nhận</div></div>
+            <div class="step-item" id="step-CONFIRMED"><div class="step-dot">2</div><div class="step-label">Đã xác nhận</div></div>
+            <div class="step-item" id="step-PREPARING"><div class="step-dot">3</div><div class="step-label">Đang đóng gói</div></div>
+            <div class="step-item" id="step-SHIPPING"><div class="step-dot">4</div><div class="step-label">Đang giao</div></div>
+            <div class="step-item" id="step-DELIVERED"><div class="step-dot">5</div><div class="step-label">Thành công</div></div>
+          </div>
+          <div id="dlg-cancelled-banner" style="background: var(--red-pale); color: var(--red-text); padding: 10px 16px; border-radius: var(--radius-md); font-weight: 700; margin-bottom: 12px;" hidden>
+            ⚠️ Đơn hàng này đã bị hủy.
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; background: var(--surface-muted); padding: 14px; border-radius: var(--radius-md);">
+            <div>
+              <div style="font-size: 12px; color: var(--muted);">Địa chỉ giao:</div>
+              <strong id="dlg-order-address">-</strong>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 6px;">Hotline liên hệ:</div>
+              <strong id="dlg-order-phone">-</strong>
+            </div>
+            <div>
+              <div style="font-size: 12px; color: var(--muted);">Phương thức thanh toán:</div>
+              <strong id="dlg-order-payment">-</strong>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 6px;">Trạng thái thanh toán:</div>
+              <span id="dlg-order-payment-status">-</span>
+            </div>
+          </div>
+
+          <h4>Sản phẩm trong đơn</h4>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th>Đơn giá</th>
+                  <th>Số lượng</th>
+                  <th>Tạm tính</th>
+                </tr>
+              </thead>
+              <tbody id="dlg-order-items-body"></tbody>
+            </table>
+          </div>
+          <div style="text-align: right; font-size: 17px; margin-top: 10px;">
+            Tổng tiền: <strong class="product-price" id="dlg-order-total-price">0 đ</strong>
+          </div>
+        </div>
+        <div class="modal-footer" id="dlg-order-actions">
+          <button class="button button-secondary" onclick="document.querySelector('#order-detail-dialog').close()">Đóng</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- SHOP REQUEST DIALOG (MỞ SHOP) -->
+    <dialog id="shop-request-dialog">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>Đăng ký Mở Shop bán hàng</h3>
+          <button class="modal-close" onclick="document.querySelector('#shop-request-dialog').close()" type="button">×</button>
+        </div>
+        <div class="modal-body">
+          <p style="color: var(--muted); margin: 0 0 14px;">Gửi yêu cầu tới Admin để trở thành đối tác mở gian hàng trái cây trên Fruit Fresh.</p>
+          <form id="form-submit-shop-request">
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="req-shop-name">Tên shop mong muốn <span>*</span></label>
+              <input class="form-control" id="req-shop-name" required placeholder="Ví dụ: Vườn Cam Sành Miền Tây" />
+            </div>
+            <div class="form-group" style="margin-bottom: 18px;">
+              <label for="req-shop-desc">Giới thiệu về gian hàng / nông sản</label>
+              <textarea class="form-control" id="req-shop-desc" rows="3" placeholder="Mô tả các mặt hàng bạn cung cấp..."></textarea>
+            </div>
+            <button class="button button-primary" type="submit" style="width: 100%;">Gửi yêu cầu phê duyệt</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- CANCEL ORDER REASON DIALOG -->
+    <dialog id="cancel-order-dialog">
+      <div class="modal-box" style="max-width: 480px;">
+        <div class="modal-header">
+          <h3>Hủy đơn hàng #<span id="cancel-dialog-order-id">-</span></h3>
+          <button class="modal-close" onclick="document.querySelector('#cancel-order-dialog').close()" type="button">×</button>
+        </div>
+        <div class="modal-body">
+          <form id="form-confirm-cancel-order">
+            <input type="hidden" id="cancel-target-id" />
+            <input type="hidden" id="cancel-target-actor" value="customer" />
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label for="cancel-reason-input">Lý do hủy đơn <span>*</span></label>
+              <textarea class="form-control" id="cancel-reason-input" required rows="3" placeholder="Nhập lý do hủy đơn hàng..."></textarea>
+            </div>
+            <button class="button button-danger" type="submit" style="width: 100%;">Xác nhận hủy đơn hàng</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- PRODUCT ADD/EDIT DIALOG -->
+    <dialog id="product-form-dialog">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 id="product-dlg-title">Thêm sản phẩm mới</h3>
+          <button class="modal-close" onclick="document.querySelector('#product-form-dialog').close()" type="button">×</button>
+        </div>
+        <div class="modal-body">
+          <form id="form-manage-product">
+            <input type="hidden" id="prod-edit-id" />
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="prod-name">Tên sản phẩm <span>*</span></label>
+              <input class="form-control" id="prod-name" required placeholder="Ví dụ: Nho mẫu đơn Ninh Thuận" />
+            </div>
+            <div class="form-row" style="margin-bottom: 12px;">
+              <div class="form-group">
+                <label for="prod-category">Danh mục <span>*</span></label>
+                <select class="form-control" id="prod-category" required></select>
+              </div>
+              <div class="form-group">
+                <label for="prod-price">Giá bán (VNĐ) <span>*</span></label>
+                <input class="form-control" id="prod-price" type="number" min="0" required placeholder="50000" />
+              </div>
+            </div>
+            <div class="form-row" style="margin-bottom: 12px;">
+              <div class="form-group">
+                <label for="prod-expiry">Hạn sử dụng</label>
+                <input class="form-control" id="prod-expiry" type="date" />
+              </div>
+              <div class="form-group">
+                <label for="prod-status">Trạng thái bán</label>
+                <select class="form-control" id="prod-status">
+                  <option value="AVAILABLE">Đang bán (AVAILABLE)</option>
+                  <option value="HIDDEN">Ẩn sản phẩm (HIDDEN)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="prod-image-url">URL hình ảnh sản phẩm</label>
+              <input class="form-control" id="prod-image-url" placeholder="https://..." />
+            </div>
+            <div class="form-group" style="margin-bottom: 18px;">
+              <label for="prod-desc">Mô tả chi tiết</label>
+              <textarea class="form-control" id="prod-desc" rows="3" placeholder="Đặc điểm hương vị, nguồn gốc xuất xứ..."></textarea>
+            </div>
+            <button class="button button-primary" type="submit" style="width: 100%;">Lưu sản phẩm</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- CATEGORY ADD/EDIT DIALOG -->
+    <dialog id="category-form-dialog">
+      <div class="modal-box" style="max-width: 480px;">
+        <div class="modal-header">
+          <h3 id="category-dlg-title">Thêm danh mục mới</h3>
+          <button class="modal-close" onclick="document.querySelector('#category-form-dialog').close()" type="button">×</button>
+        </div>
+        <div class="modal-body">
+          <form id="form-manage-category">
+            <input type="hidden" id="cat-edit-id" />
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="cat-name">Tên danh mục <span>*</span></label>
+              <input class="form-control" id="cat-name" required placeholder="Ví dụ: Trái cây nhập khẩu" />
+            </div>
+            <div class="form-group" style="margin-bottom: 18px;">
+              <label for="cat-desc">Mô tả</label>
+              <textarea class="form-control" id="cat-desc" rows="3" placeholder="Mô tả nhóm danh mục..."></textarea>
+            </div>
+            <button class="button button-primary" type="submit" style="width: 100%;">Lưu danh mục</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- STAFF ADD DIALOG -->
+    <dialog id="staff-form-dialog">
+      <div class="modal-box" style="max-width: 480px;">
+        <div class="modal-header">
+          <h3>Thêm nhân viên vào Shop (UC18)</h3>
+          <button class="modal-close" onclick="document.querySelector('#staff-form-dialog').close()" type="button">×</button>
+        </div>
+        <div class="modal-body">
+          <p style="color: var(--muted); margin: 0 0 14px;">Nhập email của tài khoản khách hàng để phân quyền nhân viên.</p>
+          <form id="form-add-staff">
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="staff-email-input">Email nhân viên <span>*</span></label>
+              <input class="form-control" id="staff-email-input" type="email" required placeholder="nhanvien@fruitfresh.vn" />
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label for="staff-role-select">Vai trò phân công <span>*</span></label>
+              <select class="form-control" id="staff-role-select" required>
+                <option value="INVENTORY_STAFF">📦 Nhân viên Kho (INVENTORY_STAFF)</option>
+                <option value="ORDER_STAFF">🚚 Nhân viên Đơn hàng (ORDER_STAFF)</option>
+              </select>
+            </div>
+            <button class="button button-primary" type="submit" style="width: 100%;">Thêm vào nhân sự shop</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- REJECT REQUEST DIALOG -->
+    <dialog id="reject-request-dialog">
+      <div class="modal-box" style="max-width: 480px;">
+        <div class="modal-header">
+          <h3>Từ chối yêu cầu mở Shop</h3>
+          <button class="modal-close" onclick="document.querySelector('#reject-request-dialog').close()" type="button">×</button>
+        </div>
+        <div class="modal-body">
+          <form id="form-reject-request">
+            <input type="hidden" id="reject-req-id" />
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label for="reject-reason-input">Lý do từ chối <span>*</span></label>
+              <textarea class="form-control" id="reject-reason-input" required rows="3" placeholder="Nhập lý do không phê duyệt..."></textarea>
+            </div>
+            <button class="button button-danger" type="submit" style="width: 100%;">Xác nhận từ chối</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container"></div>
   </body>
 </html>

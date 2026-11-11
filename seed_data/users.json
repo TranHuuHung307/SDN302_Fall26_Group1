@@ -1,0 +1,206 @@
+[
+  {
+    "_id": {
+      "$oid": "a10000000000000000000001"
+    },
+    "fullName": "Nguyễn Quản Trị",
+    "email": "admin@fruitfresh.vn",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0901000001",
+    "role": "ADMIN",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-01-05T01:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-01-05T01:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000002"
+    },
+    "fullName": "Trần Thị Mai",
+    "email": "mai.tran@fruitfresh.vn",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0901000002",
+    "role": "SHOP_OWNER",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-01-10T02:15:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-01-10T02:15:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000003"
+    },
+    "fullName": "Lê Văn Hùng",
+    "email": "hung.le@fruitfresh.vn",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0901000003",
+    "role": "SHOP_OWNER",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-01-18T07:30:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-01-18T07:30:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000004"
+    },
+    "fullName": "Phạm Thu Hà",
+    "email": "ha.pham@fruitfresh.vn",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0901000004",
+    "role": "STAFF",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-01T01:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-01T01:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000005"
+    },
+    "fullName": "Đỗ Minh Quân",
+    "email": "quan.do@fruitfresh.vn",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0901000005",
+    "role": "STAFF",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-01T01:05:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-01T01:05:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000006"
+    },
+    "fullName": "Vũ Ngọc Ánh",
+    "email": "anh.vu@fruitfresh.vn",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0901000006",
+    "role": "STAFF",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-12T03:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-12T03:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000007"
+    },
+    "fullName": "Hoàng Gia Bảo",
+    "email": "bao.hoang@gmail.com",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0912000007",
+    "role": "CUSTOMER",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-20T12:20:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-20T12:20:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000008"
+    },
+    "fullName": "Ngô Thanh Tâm",
+    "email": "tam.ngo@gmail.com",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0912000008",
+    "role": "CUSTOMER",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-03-02T04:45:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-02T04:45:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000009"
+    },
+    "fullName": "Bùi Khánh Linh",
+    "email": "linh.bui@gmail.com",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0912000009",
+    "role": "CUSTOMER",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-03-15T13:10:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-15T13:10:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000010"
+    },
+    "fullName": "Đặng Quốc Việt",
+    "email": "viet.dang@gmail.com",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0912000010",
+    "role": "CUSTOMER",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-04-01T00:30:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-01T00:30:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000011"
+    },
+    "fullName": "Lý Thị Hồng",
+    "email": "hong.ly@gmail.com",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0912000011",
+    "role": "CUSTOMER",
+    "accountStatus": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-04-22T09:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-04-22T09:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a10000000000000000000012"
+    },
+    "fullName": "Trịnh Văn Nam",
+    "email": "nam.trinh@gmail.com",
+    "password": "$2b$10$6/61olx4B8z2LQz32AFoM.jkpd7FzEzDxLrtajbbi54q68Pkic42e",
+    "phone": "0912000012",
+    "role": "CUSTOMER",
+    "accountStatus": "BANNED",
+    "createdAt": {
+      "$date": "2026-05-03T06:25:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-03T06:25:00.000Z"
+    }
+  }
+]

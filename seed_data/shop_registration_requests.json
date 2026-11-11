@@ -1,0 +1,80 @@
+[
+  {
+    "_id": {
+      "$oid": "b30000000000000000000001"
+    },
+    "customerId": {
+      "$oid": "a10000000000000000000002"
+    },
+    "reviewedBy": {
+      "$oid": "a10000000000000000000001"
+    },
+    "shopName": "Mai Fruit Garden",
+    "description": "Trái cây miền Tây thu hoạch trong ngày, giao trong nội thành Cần Thơ.",
+    "status": "APPROVED",
+    "createdAt": {
+      "$date": "2026-01-10T02:30:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-01-12T03:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b30000000000000000000002"
+    },
+    "customerId": {
+      "$oid": "a10000000000000000000003"
+    },
+    "reviewedBy": {
+      "$oid": "a10000000000000000000001"
+    },
+    "shopName": "Hùng Trái Cây Nhập Khẩu",
+    "description": "Chuyên trái cây nhập khẩu Mỹ, Úc, Hàn Quốc có đầy đủ chứng từ.",
+    "status": "APPROVED",
+    "createdAt": {
+      "$date": "2026-01-18T08:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-01-20T08:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b30000000000000000000003"
+    },
+    "customerId": {
+      "$oid": "a10000000000000000000010"
+    },
+    "reviewedBy": null,
+    "shopName": "Việt Organic Farm",
+    "description": "Trái cây hữu cơ Đà Lạt, canh tác theo tiêu chuẩn VietGAP.",
+    "status": "PENDING",
+    "createdAt": {
+      "$date": "2026-09-28T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-28T02:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b30000000000000000000004"
+    },
+    "customerId": {
+      "$oid": "a10000000000000000000012"
+    },
+    "reviewedBy": {
+      "$oid": "a10000000000000000000001"
+    },
+    "shopName": "Nam Fruit Giá Sốc",
+    "description": "Bán trái cây giá rẻ.",
+    "status": "REJECTED",
+    "createdAt": {
+      "$date": "2026-05-04T01:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-05T07:00:00.000Z"
+    }
+  }
+]

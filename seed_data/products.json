@@ -1,0 +1,582 @@
+[
+  {
+    "_id": {
+      "$oid": "d10000000000000000000001"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000001"
+    },
+    "productName": "Xoài cát Hòa Lộc",
+    "description": "Xoài cát Hòa Lộc Tiền Giang, thịt vàng, ngọt đậm. Giá theo kg.",
+    "price": 85000,
+    "stockQuantity": 58,
+    "images": [
+      "https://picsum.photos/seed/fruit1-1/600/600",
+      "https://picsum.photos/seed/fruit1-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-14T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000002"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000001"
+    },
+    "productName": "Sầu riêng Ri6",
+    "description": "Sầu riêng Ri6 cơm vàng hạt lép, bao ăn. Giá theo kg.",
+    "price": 135000,
+    "stockQuantity": 62,
+    "images": [
+      "https://picsum.photos/seed/fruit2-1/600/600",
+      "https://picsum.photos/seed/fruit2-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-11T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000003"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000001"
+    },
+    "productName": "Măng cụt Lái Thiêu",
+    "description": "Măng cụt vỏ mỏng, múi trắng. Giá theo kg.",
+    "price": 70000,
+    "stockQuantity": 35,
+    "images": [
+      "https://picsum.photos/seed/fruit3-1/600/600",
+      "https://picsum.photos/seed/fruit3-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-12T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000004"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000001"
+    },
+    "productName": "Chôm chôm nhãn",
+    "description": "Chôm chôm nhãn Vĩnh Long, tróc hạt. Giá theo kg.",
+    "price": 45000,
+    "stockQuantity": 42,
+    "images": [
+      "https://picsum.photos/seed/fruit4-1/600/600",
+      "https://picsum.photos/seed/fruit4-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-10T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000005"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000001"
+    },
+    "productName": "Thanh long ruột đỏ",
+    "description": "Thanh long ruột đỏ Long An. Giá theo kg.",
+    "price": 38000,
+    "stockQuantity": 41,
+    "images": [
+      "https://picsum.photos/seed/fruit5-1/600/600",
+      "https://picsum.photos/seed/fruit5-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-16T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000006"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000001"
+    },
+    "productName": "Vú sữa Lò Rèn",
+    "description": "Vú sữa Lò Rèn Vĩnh Kim. Hết mùa, tạm hết hàng.",
+    "price": 60000,
+    "stockQuantity": 0,
+    "images": [
+      "https://picsum.photos/seed/fruit6-1/600/600",
+      "https://picsum.photos/seed/fruit6-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-09-20T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000007"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000002"
+    },
+    "productName": "Bưởi da xanh",
+    "description": "Bưởi da xanh Bến Tre, trái 1.4–1.6kg. Giá theo kg.",
+    "price": 55000,
+    "stockQuantity": 35,
+    "images": [
+      "https://picsum.photos/seed/fruit7-1/600/600",
+      "https://picsum.photos/seed/fruit7-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-25T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000008"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000002"
+    },
+    "productName": "Cam sành Vĩnh Long",
+    "description": "Cam sành mọng nước, hợp vắt nước. Giá theo kg.",
+    "price": 28000,
+    "stockQuantity": 112,
+    "images": [
+      "https://picsum.photos/seed/fruit8-1/600/600",
+      "https://picsum.photos/seed/fruit8-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-20T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000009"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000002"
+    },
+    "productName": "Quýt đường Lai Vung",
+    "description": "Quýt đường ngọt thanh, vỏ mỏng. Giá theo kg.",
+    "price": 42000,
+    "stockQuantity": 48,
+    "images": [
+      "https://picsum.photos/seed/fruit9-1/600/600",
+      "https://picsum.photos/seed/fruit9-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-18T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000010"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000003"
+    },
+    "productName": "Giỏ quà Sum Vầy",
+    "description": "Giỏ 5kg gồm xoài, bưởi, thanh long, cam, quýt.",
+    "price": 450000,
+    "stockQuantity": 14,
+    "images": [
+      "https://picsum.photos/seed/fruit10-1/600/600",
+      "https://picsum.photos/seed/fruit10-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-13T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000011"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000003"
+    },
+    "productName": "Giỏ quà Phú Quý",
+    "description": "Giỏ 8kg trái cây cao cấp kèm thiệp. Ngừng bán.",
+    "price": 890000,
+    "stockQuantity": 6,
+    "images": [
+      "https://picsum.photos/seed/fruit11-1/600/600",
+      "https://picsum.photos/seed/fruit11-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-13T16:59:00.000Z"
+    },
+    "productStatus": "HIDDEN",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000012"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000005"
+    },
+    "productName": "Táo Envy New Zealand",
+    "description": "Táo Envy size 70, giòn ngọt. Giá theo kg.",
+    "price": 189000,
+    "stockQuantity": 38,
+    "images": [
+      "https://picsum.photos/seed/fruit12-1/600/600",
+      "https://picsum.photos/seed/fruit12-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-11-05T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000013"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000005"
+    },
+    "productName": "Táo Fuji Nhật Bản",
+    "description": "Táo Fuji Aomori. Giá theo kg.",
+    "price": 165000,
+    "stockQuantity": 30,
+    "images": [
+      "https://picsum.photos/seed/fruit13-1/600/600",
+      "https://picsum.photos/seed/fruit13-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-11-10T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000014"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000005"
+    },
+    "productName": "Lê Nam Phi",
+    "description": "Lê Forelle Nam Phi. Giá theo kg.",
+    "price": 95000,
+    "stockQuantity": 32,
+    "images": [
+      "https://picsum.photos/seed/fruit14-1/600/600",
+      "https://picsum.photos/seed/fruit14-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-30T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000015"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000006"
+    },
+    "productName": "Nho mẫu đơn Hàn Quốc",
+    "description": "Nho Shine Muscat, chùm 500–600g. Giá theo kg.",
+    "price": 420000,
+    "stockQuantity": 34,
+    "images": [
+      "https://picsum.photos/seed/fruit15-1/600/600",
+      "https://picsum.photos/seed/fruit15-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-15T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000016"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000006"
+    },
+    "productName": "Cherry đỏ Mỹ",
+    "description": "Cherry size 9.5, hộp 1kg.",
+    "price": 399000,
+    "stockQuantity": 21,
+    "images": [
+      "https://picsum.photos/seed/fruit16-1/600/600",
+      "https://picsum.photos/seed/fruit16-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-12T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000017"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000006"
+    },
+    "productName": "Việt quất Peru",
+    "description": "Việt quất hộp 125g.",
+    "price": 75000,
+    "stockQuantity": 56,
+    "images": [
+      "https://picsum.photos/seed/fruit17-1/600/600",
+      "https://picsum.photos/seed/fruit17-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-14T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000018"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000007"
+    },
+    "productName": "Kiwi vàng Zespri",
+    "description": "Kiwi vàng SunGold New Zealand. Giá theo kg.",
+    "price": 210000,
+    "stockQuantity": 28,
+    "images": [
+      "https://picsum.photos/seed/fruit18-1/600/600",
+      "https://picsum.photos/seed/fruit18-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-28T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000019"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000007"
+    },
+    "productName": "Bơ Hass Úc",
+    "description": "Bơ Hass dẻo béo. Giá theo kg.",
+    "price": 180000,
+    "stockQuantity": 23,
+    "images": [
+      "https://picsum.photos/seed/fruit19-1/600/600",
+      "https://picsum.photos/seed/fruit19-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-10-17T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d10000000000000000000020"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryId": {
+      "$oid": "c10000000000000000000006"
+    },
+    "productName": "Nho đen không hạt Úc",
+    "description": "Nho đen Úc. Lô cuối đã hết.",
+    "price": 230000,
+    "stockQuantity": 0,
+    "images": [
+      "https://picsum.photos/seed/fruit20-1/600/600",
+      "https://picsum.photos/seed/fruit20-2/600/600"
+    ],
+    "expiryDate": {
+      "$date": "2026-09-25T16:59:00.000Z"
+    },
+    "productStatus": "AVAILABLE",
+    "createdAt": {
+      "$date": "2026-02-05T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-10-05T11:00:00.000Z"
+    }
+  }
+]

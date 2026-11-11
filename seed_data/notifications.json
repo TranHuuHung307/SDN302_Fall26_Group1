@@ -1,0 +1,227 @@
+[
+  {
+    "_id": {
+      "$oid": "f20000000000000000000001"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000002"
+    },
+    "title": "Yêu cầu mở shop được duyệt",
+    "message": "Shop Mai Fruit Garden của bạn đã được phê duyệt.",
+    "type": "SHOP_REGISTRATION",
+    "isRead": true,
+    "createdAt": {
+      "$date": "2026-01-12T03:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000002"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000003"
+    },
+    "title": "Yêu cầu mở shop được duyệt",
+    "message": "Shop Hùng Trái Cây Nhập Khẩu của bạn đã được phê duyệt.",
+    "type": "SHOP_REGISTRATION",
+    "isRead": true,
+    "createdAt": {
+      "$date": "2026-01-20T08:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000003"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000012"
+    },
+    "title": "Yêu cầu mở shop bị từ chối",
+    "message": "Yêu cầu mở shop Nam Fruit Giá Sốc không đủ thông tin nguồn gốc hàng hóa.",
+    "type": "SHOP_REGISTRATION",
+    "isRead": true,
+    "createdAt": {
+      "$date": "2026-05-05T07:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000004"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000001"
+    },
+    "title": "Yêu cầu mở shop mới",
+    "message": "Đặng Quốc Việt gửi yêu cầu mở shop Việt Organic Farm.",
+    "type": "SHOP_REGISTRATION",
+    "isRead": false,
+    "createdAt": {
+      "$date": "2026-09-28T02:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000005"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000007"
+    },
+    "title": "Đơn hàng đã giao",
+    "message": "Đơn hàng #0001 đã được giao thành công.",
+    "type": "ORDER",
+    "isRead": true,
+    "createdAt": {
+      "$date": "2026-09-03T08:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000006"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000011"
+    },
+    "title": "Đơn hàng đã hủy",
+    "message": "Đơn hàng #0005 đã bị hủy, tiền sẽ được hoàn lại.",
+    "type": "ORDER",
+    "isRead": true,
+    "createdAt": {
+      "$date": "2026-09-24T03:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000007"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000007"
+    },
+    "title": "Đơn hàng đang giao",
+    "message": "Đơn hàng #0006 đang trên đường giao đến bạn.",
+    "type": "ORDER",
+    "isRead": false,
+    "createdAt": {
+      "$date": "2026-10-05T01:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000008"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000008"
+    },
+    "title": "Đơn hàng đang chuẩn bị",
+    "message": "Shop đang chuẩn bị đơn hàng #0007 của bạn.",
+    "type": "ORDER",
+    "isRead": false,
+    "createdAt": {
+      "$date": "2026-10-05T03:30:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000009"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000009"
+    },
+    "title": "Đơn hàng đã xác nhận",
+    "message": "Đơn hàng #0008 đã được shop xác nhận.",
+    "type": "ORDER",
+    "isRead": false,
+    "createdAt": {
+      "$date": "2026-10-05T13:10:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000010"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000002"
+    },
+    "title": "Đơn hàng mới",
+    "message": "Có đơn hàng mới #0009 đang chờ xác nhận.",
+    "type": "ORDER",
+    "isRead": false,
+    "createdAt": {
+      "$date": "2026-10-06T00:50:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000011"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000003"
+    },
+    "title": "Đơn hàng mới",
+    "message": "Có đơn hàng mới #0010 đang chờ xác nhận.",
+    "type": "ORDER",
+    "isRead": false,
+    "createdAt": {
+      "$date": "2026-10-06T02:30:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000012"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000004"
+    },
+    "title": "Cảnh báo hết hàng",
+    "message": "Sản phẩm Vú sữa Lò Rèn đã hết hàng.",
+    "type": "INVENTORY",
+    "isRead": true,
+    "createdAt": {
+      "$date": "2026-09-21T01:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000013"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000006"
+    },
+    "title": "Cảnh báo hết hàng",
+    "message": "Sản phẩm Nho đen không hạt Úc đã hết hàng.",
+    "type": "INVENTORY",
+    "isRead": true,
+    "createdAt": {
+      "$date": "2026-09-26T01:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000014"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000004"
+    },
+    "title": "Sắp hết hạn sử dụng",
+    "message": "Chôm chôm nhãn sẽ hết hạn vào ngày 10/10/2026.",
+    "type": "INVENTORY",
+    "isRead": false,
+    "createdAt": {
+      "$date": "2026-10-05T23:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f20000000000000000000015"
+    },
+    "receiverId": {
+      "$oid": "a10000000000000000000006"
+    },
+    "title": "Sắp hết hạn sử dụng",
+    "message": "Cherry đỏ Mỹ sẽ hết hạn vào ngày 12/10/2026.",
+    "type": "INVENTORY",
+    "isRead": false,
+    "createdAt": {
+      "$date": "2026-10-05T23:00:00.000Z"
+    }
+  }
+]

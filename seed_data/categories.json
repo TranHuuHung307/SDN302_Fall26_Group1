@@ -1,0 +1,121 @@
+[
+  {
+    "_id": {
+      "$oid": "c10000000000000000000001"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryName": "Trái cây nhiệt đới",
+    "description": "Xoài, sầu riêng, măng cụt, chôm chôm...",
+    "status": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c10000000000000000000002"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryName": "Trái cây có múi",
+    "description": "Cam, bưởi, quýt, chanh",
+    "status": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c10000000000000000000003"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryName": "Giỏ quà trái cây",
+    "description": "Giỏ quà biếu tặng theo dịp",
+    "status": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c10000000000000000000004"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000001"
+    },
+    "categoryName": "Trái cây sấy",
+    "description": "Tạm ngưng kinh doanh",
+    "status": "INACTIVE",
+    "createdAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c10000000000000000000005"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryName": "Táo & Lê",
+    "description": "Táo, lê nhập khẩu",
+    "status": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c10000000000000000000006"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryName": "Nho & Cherry",
+    "description": "Nho, cherry, việt quất",
+    "status": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c10000000000000000000007"
+    },
+    "shopId": {
+      "$oid": "b10000000000000000000002"
+    },
+    "categoryName": "Kiwi & Bơ",
+    "description": "Kiwi New Zealand, bơ Úc",
+    "status": "ACTIVE",
+    "createdAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-02T02:00:00.000Z"
+    }
+  }
+]

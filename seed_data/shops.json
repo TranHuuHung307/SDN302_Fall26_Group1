@@ -8,9 +8,9 @@
     },
     "shopName": "Mai Fruit Garden",
     "address": "12 Nguyễn Văn Cừ, Ninh Kiều, Cần Thơ",
-    "logoUrl": "https://picsum.photos/seed/shop1-logo/200",
+    "logoUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=300&auto=format&fit=crop&q=80",
     "phone": "02923800001",
-    "bannerUrl": "https://picsum.photos/seed/shop1-banner/1200/300",
+    "bannerUrl": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=1200&auto=format&fit=crop&q=80",
     "approvalStatus": "APPROVED",
     "operationStatus": "OPEN",
     "createdAt": {
@@ -29,9 +29,9 @@
     },
     "shopName": "Hùng Trái Cây Nhập Khẩu",
     "address": "88 Lê Lợi, Quận 1, TP. Hồ Chí Minh",
-    "logoUrl": "https://picsum.photos/seed/shop2-logo/200",
+    "logoUrl": "https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=300&auto=format&fit=crop&q=80",
     "phone": "02838000002",
-    "bannerUrl": "https://picsum.photos/seed/shop2-banner/1200/300",
+    "bannerUrl": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&auto=format&fit=crop&q=80",
     "approvalStatus": "APPROVED",
     "operationStatus": "OPEN",
     "createdAt": {

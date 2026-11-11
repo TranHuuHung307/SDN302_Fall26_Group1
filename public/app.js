@@ -692,10 +692,14 @@
   // -------------------------------------------------------------
   async function loadInventoryView() {
     try {
+      if (!state.currentShop && state.shops.length) {
+        state.currentShop = state.shops[0];
+      }
+      const shopParam = state.currentShop?._id ? `&shopId=${state.currentShop._id}` : '';
       const [txRes, alertsRes, prodRes] = await Promise.all([
-        api('/myshop/inventory/transactions?limit=30'),
-        api('/myshop/inventory/alerts?days=3'),
-        api('/myshop/products?limit=50'),
+        api(`/myshop/inventory/transactions?limit=30${shopParam}`),
+        api(`/myshop/inventory/alerts?days=3${shopParam}`),
+        api(`/myshop/products?limit=50${shopParam}`),
       ]);
 
       state.inventoryTransactions = txRes.data?.items || txRes.data || [];
@@ -803,7 +807,11 @@
     tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải danh sách đơn hàng của shop...</td></tr>';
 
     try {
-      const url = status ? `/myshop/orders?orderStatus=${status}&limit=50` : '/myshop/orders?limit=50';
+      if (!state.currentShop && state.shops.length) {
+        state.currentShop = state.shops[0];
+      }
+      const shopParam = state.currentShop?._id ? `&shopId=${state.currentShop._id}` : '';
+      const url = status ? `/myshop/orders?orderStatus=${status}&limit=50${shopParam}` : `/myshop/orders?limit=50${shopParam}`;
       const res = await api(url);
       state.shopOrders = res.data?.items || res.data || [];
       renderShopOrdersTable();
@@ -904,12 +912,14 @@
   // -------------------------------------------------------------
   async function loadShopManageView() {
     try {
+      if (!state.currentShop && state.shops.length) state.currentShop = state.shops[0];
+      const shopParam = state.currentShop?._id ? `shopId=${state.currentShop._id}&` : '';
       const [shopRes, prodRes, catRes, staffRes, statsRes] = await Promise.all([
         api('/shops'),
-        api('/myshop/products?limit=50'),
-        api('/myshop/categories?limit=50'),
+        api(`/myshop/products?${shopParam}limit=50`),
+        api(`/myshop/categories?${shopParam}limit=50`),
         api(`/shops/${state.currentShop?._id || 'all'}/staff`).catch(() => ({ data: [] })),
-        api('/myshop/statistics/revenue').catch(() => ({ data: [] })),
+        api(`/myshop/statistics/revenue?${shopParam}`).catch(() => ({ data: [] })),
       ]);
 
       state.shops = shopRes.data?.items || shopRes.data || [];

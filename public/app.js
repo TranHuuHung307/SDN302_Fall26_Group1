@@ -36,11 +36,11 @@
 
   // Demo user credentials for test
   const DEMO_USERS = {
-    admin: { email: 'admin@fruitfresh.vn', password: 'change_me', roleName: 'Admin' },
-    owner: { email: 'mai.tran@fruitfresh.vn', password: 'change_me', roleName: 'Shop Owner' },
-    inventory: { email: 'ha.pham@fruitfresh.vn', password: 'change_me', roleName: 'Nhân viên Kho' },
-    order: { email: 'quan.do@fruitfresh.vn', password: 'change_me', roleName: 'Nhân viên Đơn hàng' },
-    customer: { email: 'minh.dao@fruitfresh.vn', password: 'change_me', roleName: 'Khách hàng' },
+    admin: { email: 'admin@fruitfresh.vn', password: '123456', roleName: 'Admin' },
+    owner: { email: 'mai.tran@fruitfresh.vn', password: '123456', roleName: 'Shop Owner' },
+    inventory: { email: 'ha.pham@fruitfresh.vn', password: '123456', roleName: 'Nhân viên Kho' },
+    order: { email: 'quan.do@fruitfresh.vn', password: '123456', roleName: 'Nhân viên Đơn hàng' },
+    customer: { email: 'minh.dao@fruitfresh.vn', password: '123456', roleName: 'Khách hàng' },
   };
 
   // -------------------------------------------------------------

@@ -42,7 +42,7 @@
     "price": 135000,
     "stockQuantity": 62,
     "images": [
-      "https://images.unsplash.com/photo-1519544442-93857b48665e?w=600&auto=format&fit=crop&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/b/bc/Durian_in_black.jpg"
     ],
     "expiryDate": {
       "$date": "2026-10-11T16:59:00.000Z"
@@ -70,7 +70,7 @@
     "price": 70000,
     "stockQuantity": 35,
     "images": [
-      "https://images.unsplash.com/photo-1558877398-9655d929c409?w=600&auto=format&fit=crop&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/9/93/Mangosteens_-_whole_and_opened.jpg"
     ],
     "expiryDate": {
       "$date": "2026-10-12T16:59:00.000Z"
@@ -98,7 +98,7 @@
     "price": 45000,
     "stockQuantity": 42,
     "images": [
-      "https://images.unsplash.com/photo-1538185835974-ee002b332b22?w=600&auto=format&fit=crop&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/8/83/Rambutan_white_background_alt.jpg"
     ],
     "expiryDate": {
       "$date": "2026-10-10T16:59:00.000Z"
@@ -154,7 +154,7 @@
     "price": 60000,
     "stockQuantity": 0,
     "images": [
-      "https://images.unsplash.com/photo-1564849827938-7bbc8260293e?w=600&auto=format&fit=crop&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/a/ab/Chrusophyllum_cainito.jpg"
     ],
     "expiryDate": {
       "$date": "2026-09-20T16:59:00.000Z"
@@ -182,7 +182,7 @@
     "price": 55000,
     "stockQuantity": 35,
     "images": [
-      "https://images.unsplash.com/photo-1517355236730-cdedf90a2da3?w=600&auto=format&fit=crop&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/f/f3/Pomelo_fruit.jpg"
     ],
     "expiryDate": {
       "$date": "2026-10-25T16:59:00.000Z"
@@ -378,7 +378,7 @@
     "price": 95000,
     "stockQuantity": 32,
     "images": [
-      "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1615484477778-ca3b77940c25?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-10-30T16:59:00.000Z"
@@ -406,7 +406,7 @@
     "price": 420000,
     "stockQuantity": 34,
     "images": [
-      "https://images.unsplash.com/photo-1596363505729-4190a9506133?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1631128361770-5cdefd9dbca2?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-10-15T16:59:00.000Z"
@@ -434,7 +434,7 @@
     "price": 399000,
     "stockQuantity": 21,
     "images": [
-      "https://images.unsplash.com/photo-1528825871115-3581a5387919?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1528820600606-0ef5600cbfee?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-10-12T16:59:00.000Z"
@@ -546,7 +546,7 @@
     "price": 230000,
     "stockQuantity": 0,
     "images": [
-      "https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1571552649017-7b868a384efd?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-09-25T16:59:00.000Z"

@@ -15,6 +15,8 @@
     currentView: 'products',
     categories: [],
     shops: [],
+    myShops: [],
+    myShopsForUserId: null,
     products: [],
     cart: null,
     customerOrders: [],
@@ -147,6 +149,8 @@
     state.token = null;
     state.user = null;
     state.currentShop = null;
+    state.myShops = [];
+    state.myShopsForUserId = null;
     sessionStorage.removeItem('fruitToken');
     localStorage.removeItem('fruitToken');
     updateNavByRole(null);
@@ -229,21 +233,33 @@
   }
 
   async function loadMyShopInfo() {
+    if (!state.user) return;
+    const userId = String(state.user._id);
     try {
-      const res = await api('/shops');
-      state.shops = res.data?.items || res.data || [];
-      if (state.user?.shopId) {
-        state.currentShop = state.shops.find((s) => String(s._id) === String(state.user.shopId)) || { _id: state.user.shopId };
-      } else if (state.user?.role === 'SHOP_OWNER') {
-        state.currentShop = state.shops.find((s) => String(s.ownerId?._id || s.ownerId) === String(state.user._id)) || state.shops[0];
-      } else if (state.user?.role === 'STAFF') {
-        state.currentShop = state.shops.find((s) => String(s._id) === String(state.user.shopId)) || state.shops[0];
+      const res = await api('/myshop/shops');
+      if (String(state.user?._id || '') !== userId) return;
+      state.myShops = res.data?.items || res.data || [];
+      state.myShopsForUserId = userId;
+      if (state.user.role === 'SHOP_OWNER') {
+        state.currentShop = state.myShops.find((s) => String(s.ownerId?._id || s.ownerId) === String(state.user._id)) || state.myShops[0];
       } else {
-        state.currentShop = state.shops[0];
+        state.currentShop = state.myShops.find((s) => String(s._id) === String(state.currentShop?._id)) || state.myShops[0];
       }
     } catch (e) {
       console.warn('Chưa lấy được thông tin shop:', e);
     }
+  }
+
+  async function ensureCurrentShop() {
+    const userId = String(state.user?._id || '');
+    const currentId = String(state.currentShop?._id || '');
+    if (state.myShopsForUserId !== userId || !state.myShops.some((shop) => String(shop._id) === currentId)) {
+      await loadMyShopInfo();
+    }
+    if (!state.currentShop || !state.myShops.some((shop) => String(shop._id) === String(state.currentShop._id))) {
+      throw new Error('Tài khoản hiện tại chưa được gán vào shop nào.');
+    }
+    return state.currentShop;
   }
 
   // -------------------------------------------------------------
@@ -411,7 +427,7 @@
                 <div class="product-price">${formatVND(p.price)}</div>
               </div>
               <button class="button button-primary button-sm" ${isOutOfStock ? 'disabled style="opacity: 0.5;"' : ''} onclick="window.__addToCart('${p._id}', 1)">
-                ${isOutOfStock ? 'Hết hàng' : '+ Thêm giỏ'}
+                ${isOutOfStock ? 'Hết hàng' : 'Thêm giỏ'}
               </button>
             </div>
           </div>
@@ -530,7 +546,7 @@
                 <button class="qty-btn" onclick="window.__updateCartQty('${item.prodId}', ${item.quantity + 1})">+</button>
               </div>
               <strong style="color: var(--green);">${formatVND(item.prodPrice * item.quantity)}</strong>
-              <button class="button-text" style="color: var(--red); font-size: 16px;" onclick="window.__removeCartItem('${item.prodId}')" title="Xóa món">✕</button>
+              <button class="button-text" style="color: var(--red); font-size: 16px;" onclick="window.__removeCartItem('${item.prodId}')" title="Xóa món">X&oacute;a</button>
             </div>
           `).join('')}
         </div>
@@ -633,7 +649,7 @@
             </div>
             <div style="display: flex; align-items: center; gap: 10px;">
               <strong class="product-price">${formatVND(order.totalAmount)}</strong>
-              ${isOnlineUnpaid ? `<button class="button button-primary button-sm" onclick="window.__payOrder('${order._id}')">💳 Thanh toán ngay</button>` : ''}
+              ${isOnlineUnpaid ? `<button class="button button-primary button-sm" onclick="window.__payOrder('${order._id}')"> Thanh toán ngay</button>` : ''}
               ${isPending ? `<button class="button button-danger button-sm" onclick="window.__openCancelOrderModal('${order._id}', 'customer')">Hủy đơn</button>` : ''}
               <button class="button button-secondary button-sm" onclick="window.__openOrderDetail('${order._id}')">Xem chi tiết</button>
             </div>
@@ -703,9 +719,7 @@
   // -------------------------------------------------------------
   async function loadInventoryView() {
     try {
-      if (!state.currentShop || (state.user?.shopId && String(state.currentShop._id) !== String(state.user.shopId))) {
-        await loadMyShopInfo();
-      }
+      await ensureCurrentShop();
       const shopParam = state.currentShop?._id ? `&shopId=${state.currentShop._id}` : '';
       const [txRes, alertsRes, prodRes] = await Promise.all([
         api(`/myshop/inventory/transactions?limit=30${shopParam}`),
@@ -818,9 +832,7 @@
     tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải danh sách đơn hàng của shop...</td></tr>';
 
     try {
-      if (!state.currentShop || (state.user?.shopId && String(state.currentShop._id) !== String(state.user.shopId))) {
-        await loadMyShopInfo();
-      }
+      await ensureCurrentShop();
       const shopParam = state.currentShop?._id ? `&shopId=${state.currentShop._id}` : '';
       const url = status ? `/myshop/orders?orderStatus=${status}&limit=50${shopParam}` : `/myshop/orders?limit=50${shopParam}`;
       const res = await api(url);
@@ -847,13 +859,13 @@
       const canCancel = ['PENDING', 'CONFIRMED', 'PREPARING'].includes(order.orderStatus);
 
       if (isPending) {
-        actionButtons += `<button class="button button-primary button-sm" onclick="window.__confirmShopOrder('${order._id}')" title="Xác nhận đơn và trừ kho">✓ Xác nhận đơn</button> `;
+        actionButtons += `<button class="button button-primary button-sm" onclick="window.__confirmShopOrder('${order._id}')" title="Xác nhận đơn và trừ kho"> Xác nhận đơn</button> `;
       } else if (isConfirmed) {
-        actionButtons += `<button class="button button-secondary button-sm" onclick="window.__advanceShopOrderStatus('${order._id}', 'PREPARING')">📦 Đóng gói xong</button> `;
+        actionButtons += `<button class="button button-secondary button-sm" onclick="window.__advanceShopOrderStatus('${order._id}', 'PREPARING')"> Đóng gói xong</button> `;
       } else if (isPreparing) {
-        actionButtons += `<button class="button button-secondary button-sm" onclick="window.__advanceShopOrderStatus('${order._id}', 'SHIPPING')">🚚 Bắt đầu giao</button> `;
+        actionButtons += `<button class="button button-secondary button-sm" onclick="window.__advanceShopOrderStatus('${order._id}', 'SHIPPING')"> Bắt đầu giao</button> `;
       } else if (isShipping) {
-        actionButtons += `<button class="button button-primary button-sm" onclick="window.__advanceShopOrderStatus('${order._id}', 'DELIVERED')">🎉 Đã giao xong</button> `;
+        actionButtons += `<button class="button button-primary button-sm" onclick="window.__advanceShopOrderStatus('${order._id}', 'DELIVERED')"> Đã giao xong</button> `;
       }
 
       if (canCancel) {
@@ -923,20 +935,14 @@
   // -------------------------------------------------------------
   async function loadShopManageView() {
     try {
-      if (!state.currentShop || (state.user?.shopId && String(state.currentShop._id) !== String(state.user.shopId))) {
-        await loadMyShopInfo();
-      }
+      await ensureCurrentShop();
       const shopParam = state.currentShop?._id ? `shopId=${state.currentShop._id}&` : '';
-      const [shopRes, prodRes, catRes, staffRes, statsRes] = await Promise.all([
-        api('/shops'),
+      const [prodRes, catRes, staffRes, statsRes] = await Promise.all([
         api(`/myshop/products?${shopParam}limit=50`),
         api(`/myshop/categories?${shopParam}limit=50`),
         api(`/shops/${state.currentShop?._id || 'all'}/staff`).catch(() => ({ data: [] })),
         api(`/myshop/statistics/revenue?${shopParam}`).catch(() => ({ data: [] })),
       ]);
-
-      state.shops = shopRes.data?.items || shopRes.data || [];
-      if (!state.currentShop && state.shops.length) state.currentShop = state.shops[0];
 
       state.shopProducts = prodRes.data?.items || prodRes.data || [];
       state.shopCategories = catRes.data?.items || catRes.data || [];
@@ -997,6 +1003,30 @@
     }
   };
 
+  window.__editProduct = (id) => {
+    const product = state.shopProducts.find((item) => String(item._id) === String(id));
+    if (!product) {
+      toast('Không tìm thấy sản phẩm cần sửa. Hãy tải lại danh sách.', 'error');
+      return;
+    }
+
+    $('#product-dlg-title').textContent = 'Sửa sản phẩm';
+    $('#prod-edit-id').value = product._id;
+    $('#prod-name').value = product.productName || '';
+    $('#prod-category').innerHTML = state.shopCategories
+      .map((category) => `<option value="${category._id}">${escapeHtml(category.categoryName)}</option>`)
+      .join('');
+    $('#prod-category').value = String(product.categoryId?._id || product.categoryId || '');
+    $('#prod-price').value = product.price ?? '';
+    $('#prod-expiry').value = product.expiryDate && !Number.isNaN(new Date(product.expiryDate).getTime())
+      ? new Date(product.expiryDate).toISOString().slice(0, 10)
+      : '';
+    $('#prod-status').value = product.productStatus || 'AVAILABLE';
+    $('#prod-image-url').value = product.images?.[0] || '';
+    $('#prod-desc').value = product.description || '';
+    $('#product-form-dialog').showModal();
+  };
+
   function renderShopCategoriesTable() {
     const tbody = $('#sm-categories-table-body');
     tbody.innerHTML = state.shopCategories.map((c) => `
@@ -1010,6 +1040,20 @@
       </tr>
     `).join('') || '<tr><td colspan="4" style="text-align: center; color: var(--muted); padding: 30px;">Chưa có danh mục nào.</td></tr>';
   }
+
+  window.__editCategory = (id) => {
+    const category = state.shopCategories.find((item) => String(item._id) === String(id));
+    if (!category) {
+      toast('Không tìm thấy danh mục cần sửa. Hãy tải lại danh sách.', 'error');
+      return;
+    }
+
+    $('#category-dlg-title').textContent = 'Sửa danh mục';
+    $('#cat-edit-id').value = category._id;
+    $('#cat-name').value = category.categoryName || '';
+    $('#cat-desc').value = category.description || '';
+    $('#category-form-dialog').showModal();
+  };
 
   function renderShopStaffTable() {
     const tbody = $('#sm-staff-table-body');
@@ -1108,7 +1152,7 @@
         <td>${formatDate(r.createdAt)}</td>
         <td><span class="badge badge-pending">PENDING</span></td>
         <td>
-          <button class="button button-primary button-sm" onclick="window.__approveShopRequest('${r._id}')">✓ Phê duyệt</button>
+          <button class="button button-primary button-sm" onclick="window.__approveShopRequest('${r._id}')"> Phê duyệt</button>
           <button class="button button-danger button-sm" onclick="window.__openRejectRequestModal('${r._id}')">Từ chối</button>
         </td>
       </tr>

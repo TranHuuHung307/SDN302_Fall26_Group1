@@ -15,6 +15,19 @@ async function listShops(req, res, next) {
   } catch (error) { return next(error); }
 }
 
+async function listMyShops(req, res, next) {
+  try {
+    const filter = {};
+    if (req.user.role === "SHOP_OWNER") filter.ownerId = req.user._id;
+    if (req.user.role === "STAFF") {
+      const shopIds = await ShopStaff.find({ userId: req.user._id }).distinct("shopId");
+      filter._id = { $in: shopIds };
+    }
+    const data = await Shop.find(filter).populate("ownerId", "fullName email").sort({ createdAt: -1 }).lean();
+    return res.json({ success: true, data });
+  } catch (error) { return next(error); }
+}
+
 async function getShop(req, res, next) {
   try {
     if (!validId(req.params.id)) return res.status(400).json({ success: false, message: "Invalid shop id." });
@@ -159,4 +172,4 @@ async function updateShopApprovalStatus(req, res, next) {
   } catch (error) { return next(error); }
 }
 
-module.exports = { listShops, getShop, requestShop, myRequests, listRequests, reviewRequest, updateShop, listStaff, addStaff, removeStaff, listAdminShops, updateShopApprovalStatus };
+module.exports = { listShops, listMyShops, getShop, requestShop, myRequests, listRequests, reviewRequest, updateShop, listStaff, addStaff, removeStaff, listAdminShops, updateShopApprovalStatus };

@@ -3,6 +3,7 @@ const controller = require("../controllers/shop");
 const { authenticate, allowRoles } = require("../middleware/auth");
 const router = express.Router();
 router.get("/shops", controller.listShops);
+router.get("/myshop/shops", authenticate, allowRoles("ADMIN", "SHOP_OWNER", "STAFF"), controller.listMyShops);
 router.get("/admin/shops", authenticate, allowRoles("ADMIN"), controller.listAdminShops);
 router.patch("/admin/shops/:id/status", authenticate, allowRoles("ADMIN"), controller.updateShopApprovalStatus);
 router.get("/shops/:id", controller.getShop);

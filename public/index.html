@@ -32,36 +32,33 @@
         <!-- PRIMARY NAV -->
         <nav class="primary-nav" id="main-nav" role="tablist">
           <button class="nav-tab is-active" type="button" role="tab" data-view="products" id="tab-products">
-            🍎 Cửa hàng
+             Cửa hàng
           </button>
           <button class="nav-tab" type="button" role="tab" data-view="cart" id="tab-cart">
-            🛒 Giỏ hàng <span class="badge-count" id="nav-cart-count">0</span>
+             Giỏ hàng <span class="badge-count" id="nav-cart-count">0</span>
           </button>
           <button class="nav-tab" type="button" role="tab" data-view="orders" id="tab-orders" hidden>
-            📦 Đơn của tôi
+             Đơn của tôi
           </button>
           <button class="nav-tab" type="button" role="tab" data-view="inventory" id="tab-inventory" hidden>
-            📦 Kho hàng
+             Kho hàng
           </button>
           <button class="nav-tab" type="button" role="tab" data-view="shop-orders" id="tab-shop-orders" hidden>
-            📋 Đơn hàng Shop
+             Đơn hàng Shop
           </button>
           <button class="nav-tab" type="button" role="tab" data-view="shop-manage" id="tab-shop-manage" hidden>
-            🏬 Quản lý Shop
+             Quản lý Shop
           </button>
           <button class="nav-tab" type="button" role="tab" data-view="admin" id="tab-admin" hidden>
-            🛡️ Quản trị sàn (Admin)
+             Quản trị sàn (Admin)
           </button>
         </nav>
 
         <!-- TOP ACTIONS -->
         <div class="topbar-actions">
           <!-- NOTIFICATION BELL -->
-          <button class="btn-icon" id="btn-notifications" type="button" aria-label="Xem thông báo" title="Thông báo hệ thống">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
+          <button class="notification-button" id="btn-notifications" type="button" aria-label="Xem thông báo" title="Thông báo hệ thống">
+            Th&ocirc;ng b&aacute;o
             <span class="noti-badge" id="noti-unread-count" hidden>0</span>
           </button>
 
@@ -92,7 +89,7 @@
             <div style="text-align: right;">
               <span class="badge badge-stock" id="store-stats-badge" style="font-size: 13px; padding: 6px 14px;">Đang tải...</span>
               <button class="button button-secondary button-sm" id="btn-request-shop-trigger" style="margin-top: 6px; display: block;" hidden>
-                🏪 Mở shop bán hàng ngay
+                 Mở shop bán hàng ngay
               </button>
             </div>
           </div>
@@ -117,7 +114,7 @@
                 <option value="price-asc">Giá tăng dần</option>
                 <option value="price-desc">Giá giảm dần</option>
               </select>
-              <button class="button button-secondary button-sm" id="btn-refresh-products" type="button">🔄 Làm mới</button>
+              <button class="button button-secondary button-sm" id="btn-refresh-products" type="button"> Làm mới</button>
             </div>
           </div>
 
@@ -137,7 +134,7 @@
               <h1>Giỏ hàng & Đặt hàng</h1>
               <p>Xem lại các sản phẩm trái cây tươi ngon bạn đã chọn và tiến hành đặt hàng.</p>
             </div>
-            <button class="button button-text button-sm" id="btn-clear-cart" style="color: var(--red);">🗑️ Xóa sạch giỏ hàng</button>
+            <button class="button button-text button-sm" id="btn-clear-cart" style="color: var(--red);"> Xóa sạch giỏ hàng</button>
           </div>
 
           <div class="cart-layout">
@@ -190,7 +187,7 @@
                 </div>
 
                 <button class="button button-primary" id="btn-submit-order" type="submit" style="width: 100%; min-height: 44px; font-size: 15px;">
-                  🚀 Đặt hàng ngay
+                   Đặt hàng ngay
                 </button>
               </form>
             </div>
@@ -207,7 +204,7 @@
               <h1>Theo dõi đơn hàng</h1>
               <p>Xem trạng thái xử lý, vận chuyển và chi tiết các đơn hàng của bạn.</p>
             </div>
-            <button class="button button-secondary button-sm" id="btn-refresh-customer-orders">🔄 Làm mới</button>
+            <button class="button button-secondary button-sm" id="btn-refresh-customer-orders"> Làm mới</button>
           </div>
 
           <!-- ORDER FILTER TABS -->
@@ -237,7 +234,7 @@
               <p>Nhập kho, xuất hủy hàng hỏng/quá hạn, theo dõi biến động kho và cảnh báo tự động.</p>
             </div>
             <div style="display: flex; gap: 8px;">
-              <button class="button button-secondary button-sm" id="btn-refresh-inventory">🔄 Làm mới kho</button>
+              <button class="button button-secondary button-sm" id="btn-refresh-inventory"> Làm mới kho</button>
             </div>
           </div>
 
@@ -262,10 +259,10 @@
 
           <!-- SUBNAV FOR INVENTORY -->
           <div class="subnav" id="inv-subnav">
-            <button class="subnav-btn is-active" data-inv-tab="transactions">📋 Lịch sử giao dịch kho</button>
-            <button class="subnav-btn" data-inv-tab="import">📥 Nhập kho hàng mới</button>
-            <button class="subnav-btn" data-inv-tab="export">📤 Xuất hủy hàng hỏng/hết hạn</button>
-            <button class="subnav-btn" data-inv-tab="alerts">⚠️ Danh sách cảnh báo kho</button>
+            <button class="subnav-btn is-active" data-inv-tab="transactions"> Lịch sử giao dịch kho</button>
+            <button class="subnav-btn" data-inv-tab="import"> Nhập kho hàng mới</button>
+            <button class="subnav-btn" data-inv-tab="export"> Xuất hủy hàng hỏng/hết hạn</button>
+            <button class="subnav-btn" data-inv-tab="alerts"> Danh sách cảnh báo kho</button>
           </div>
 
           <!-- TAB 1: TRANSACTIONS HISTORY -->
@@ -411,7 +408,7 @@
               <h1>Đơn hàng của Cửa hàng</h1>
               <p>Tiếp nhận, xác nhận đơn (tự động trừ kho), điều phối giao hàng và xử lý hủy hoàn tiền.</p>
             </div>
-            <button class="button button-secondary button-sm" id="btn-refresh-shop-orders">🔄 Làm mới đơn shop</button>
+            <button class="button button-secondary button-sm" id="btn-refresh-shop-orders"> Làm mới đơn shop</button>
           </div>
 
           <!-- SHOP ORDER FILTER TABS -->
@@ -465,11 +462,11 @@
 
           <!-- SUBNAV FOR SHOP MANAGEMENT -->
           <div class="subnav" id="shop-manage-subnav">
-            <button class="subnav-btn is-active" data-sm-tab="products">🍇 Quản lý Sản phẩm</button>
-            <button class="subnav-btn" data-sm-tab="categories">📂 Quản lý Danh mục</button>
-            <button class="subnav-btn" data-sm-tab="staff">👥 Nhân viên Shop</button>
-            <button class="subnav-btn" data-sm-tab="stats">📊 Doanh thu & Bán chạy</button>
-            <button class="subnav-btn" data-sm-tab="profile">⚙️ Thông tin Shop</button>
+            <button class="subnav-btn is-active" data-sm-tab="products"> Quản lý Sản phẩm</button>
+            <button class="subnav-btn" data-sm-tab="categories"> Quản lý Danh mục</button>
+            <button class="subnav-btn" data-sm-tab="staff"> Nhân viên Shop</button>
+            <button class="subnav-btn" data-sm-tab="stats"> Doanh thu & Bán chạy</button>
+            <button class="subnav-btn" data-sm-tab="profile"> Thông tin Shop</button>
           </div>
 
           <!-- TAB 1: SHOP PRODUCTS -->
@@ -638,7 +635,7 @@
               <h1>Bảng điều khiển Admin</h1>
               <p>Giám sát toàn diện hệ thống, phê duyệt mở shop, quản lý cửa hàng và người dùng.</p>
             </div>
-            <button class="button button-secondary button-sm" id="btn-refresh-admin">🔄 Làm mới dữ liệu</button>
+            <button class="button button-secondary button-sm" id="btn-refresh-admin"> Làm mới dữ liệu</button>
           </div>
 
           <!-- ADMIN KPI CARDS -->
@@ -667,9 +664,9 @@
 
           <!-- ADMIN SUBNAV -->
           <div class="subnav" id="admin-subnav">
-            <button class="subnav-btn is-active" data-admin-tab="requests">🏢 Yêu cầu mở Shop</button>
-            <button class="subnav-btn" data-admin-tab="shops">🏪 Quản lý các Shop</button>
-            <button class="subnav-btn" data-admin-tab="users">👥 Quản lý Người dùng</button>
+            <button class="subnav-btn is-active" data-admin-tab="requests"> Yêu cầu mở Shop</button>
+            <button class="subnav-btn" data-admin-tab="shops"> Quản lý các Shop</button>
+            <button class="subnav-btn" data-admin-tab="users"> Quản lý Người dùng</button>
           </div>
 
           <!-- TAB 1: SHOP REQUESTS -->
@@ -777,7 +774,7 @@
       <div class="modal-box">
         <div class="modal-header">
           <h3 id="auth-dialog-title">Tài khoản Fruit Fresh</h3>
-          <button class="modal-close" onclick="document.querySelector('#auth-dialog').close()" type="button">×</button>
+          <button class="modal-close" onclick="document.querySelector('#auth-dialog').close()" type="button">&#272;&#243;ng</button>
         </div>
         <div class="modal-body">
           <div class="subnav" style="margin-bottom: 14px;" id="auth-mode-nav">
@@ -803,11 +800,11 @@
                 <span style="color: var(--muted); font-size: 11px;">Mật khẩu: <code style="background: var(--bg-soft); padding: 1px 4px; border-radius: 4px;">123456</code></span>
               </div>
               <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;">
-                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="customer">🛒 Khách hàng</button>
-                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="owner">🏪 Chủ shop</button>
-                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="order">🚚 Nhân viên Đơn</button>
-                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="inventory">📦 Nhân viên Kho</button>
-                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="admin">👑 Admin</button>
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="customer"> Khách hàng</button>
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="owner"> Chủ shop</button>
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="order"> Nhân viên Đơn</button>
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="inventory"> Nhân viên Kho</button>
+                <button type="button" class="button button-sm button-secondary quick-login-btn" data-role="admin"> Admin</button>
               </div>
               <select id="quick-demo-select" class="form-control" style="width: 100%; padding: 6px 10px; font-size: 12px;">
                 <option value="">-- Hoặc chọn điền nhanh từ danh sách --</option>
@@ -880,7 +877,7 @@
           <h3>🔔 Thông báo hệ thống</h3>
           <div style="display: flex; gap: 8px; align-items: center;">
             <button class="button button-text button-sm" id="btn-read-all-noti">Đánh dấu tất cả đã đọc</button>
-            <button class="modal-close" onclick="document.querySelector('#notifications-dialog').close()" type="button">×</button>
+            <button class="modal-close" onclick="document.querySelector('#notifications-dialog').close()" type="button">&#272;&#243;ng</button>
           </div>
         </div>
         <div class="modal-body" id="noti-list-container">
@@ -894,7 +891,7 @@
       <div class="modal-box modal-lg">
         <div class="modal-header">
           <h3>Chi tiết đơn hàng #<span id="dlg-order-id">-</span></h3>
-          <button class="modal-close" onclick="document.querySelector('#order-detail-dialog').close()" type="button">×</button>
+          <button class="modal-close" onclick="document.querySelector('#order-detail-dialog').close()" type="button">&#272;&#243;ng</button>
         </div>
         <div class="modal-body">
           <!-- STEPPER -->
@@ -953,7 +950,7 @@
       <div class="modal-box">
         <div class="modal-header">
           <h3>Đăng ký Mở Shop bán hàng</h3>
-          <button class="modal-close" onclick="document.querySelector('#shop-request-dialog').close()" type="button">×</button>
+          <button class="modal-close" onclick="document.querySelector('#shop-request-dialog').close()" type="button">&#272;&#243;ng</button>
         </div>
         <div class="modal-body">
           <p style="color: var(--muted); margin: 0 0 14px;">Gửi yêu cầu tới Admin để trở thành đối tác mở gian hàng trái cây trên Fruit Fresh.</p>
@@ -977,7 +974,7 @@
       <div class="modal-box" style="max-width: 480px;">
         <div class="modal-header">
           <h3>Hủy đơn hàng #<span id="cancel-dialog-order-id">-</span></h3>
-          <button class="modal-close" onclick="document.querySelector('#cancel-order-dialog').close()" type="button">×</button>
+          <button class="modal-close" onclick="document.querySelector('#cancel-order-dialog').close()" type="button">&#272;&#243;ng</button>
         </div>
         <div class="modal-body">
           <form id="form-confirm-cancel-order">
@@ -998,7 +995,7 @@
       <div class="modal-box">
         <div class="modal-header">
           <h3 id="product-dlg-title">Thêm sản phẩm mới</h3>
-          <button class="modal-close" onclick="document.querySelector('#product-form-dialog').close()" type="button">×</button>
+          <button class="modal-close" onclick="document.querySelector('#product-form-dialog').close()" type="button">&#272;&#243;ng</button>
         </div>
         <div class="modal-body">
           <form id="form-manage-product">
@@ -1049,7 +1046,7 @@
       <div class="modal-box" style="max-width: 480px;">
         <div class="modal-header">
           <h3 id="category-dlg-title">Thêm danh mục mới</h3>
-          <button class="modal-close" onclick="document.querySelector('#category-form-dialog').close()" type="button">×</button>
+          <button class="modal-close" onclick="document.querySelector('#category-form-dialog').close()" type="button">&#272;&#243;ng</button>
         </div>
         <div class="modal-body">
           <form id="form-manage-category">
@@ -1073,7 +1070,7 @@
       <div class="modal-box" style="max-width: 480px;">
         <div class="modal-header">
           <h3>Thêm nhân viên vào Shop</h3>
-          <button class="modal-close" onclick="document.querySelector('#staff-form-dialog').close()" type="button">×</button>
+          <button class="modal-close" onclick="document.querySelector('#staff-form-dialog').close()" type="button">&#272;&#243;ng</button>
         </div>
         <div class="modal-body">
           <p style="color: var(--muted); margin: 0 0 14px;">Nhập email của tài khoản khách hàng để phân quyền nhân viên.</p>
@@ -1100,7 +1097,7 @@
       <div class="modal-box" style="max-width: 480px;">
         <div class="modal-header">
           <h3>Từ chối yêu cầu mở Shop</h3>
-          <button class="modal-close" onclick="document.querySelector('#reject-request-dialog').close()" type="button">×</button>
+          <button class="modal-close" onclick="document.querySelector('#reject-request-dialog').close()" type="button">&#272;&#243;ng</button>
         </div>
         <div class="modal-body">
           <form id="form-reject-request">

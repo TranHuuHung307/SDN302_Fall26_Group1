@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Order = require("../models/order");
 const { resolveShopScope } = require("../utils/access");
 
@@ -31,7 +32,7 @@ async function resolveStatisticsShop(req, res) {
     res.status(scope.error.status).json({ success: false, message: scope.error.message });
     return null;
   }
-  return scope.shopId;
+  return new mongoose.Types.ObjectId(String(scope.shopId));
 }
 
 async function getRevenue(req, res, next) {

@@ -42,7 +42,7 @@
     "price": 135000,
     "stockQuantity": 62,
     "images": [
-      "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1519544442-93857b48665e?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-10-11T16:59:00.000Z"
@@ -70,7 +70,7 @@
     "price": 70000,
     "stockQuantity": 35,
     "images": [
-      "https://images.unsplash.com/photo-1546833998-877b37c2e5c6?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1558877398-9655d929c409?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-10-12T16:59:00.000Z"
@@ -98,7 +98,7 @@
     "price": 45000,
     "stockQuantity": 42,
     "images": [
-      "https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1538185835974-ee002b332b22?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-10-10T16:59:00.000Z"
@@ -154,7 +154,7 @@
     "price": 60000,
     "stockQuantity": 0,
     "images": [
-      "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1564849827938-7bbc8260293e?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-09-20T16:59:00.000Z"
@@ -182,7 +182,7 @@
     "price": 55000,
     "stockQuantity": 35,
     "images": [
-      "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1517355236730-cdedf90a2da3?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-10-25T16:59:00.000Z"
@@ -238,7 +238,7 @@
     "price": 42000,
     "stockQuantity": 48,
     "images": [
-      "https://images.unsplash.com/photo-1557800636-894a64c1696f?w=600&auto=format&fit=crop&q=80"
+      "https://images.unsplash.com/photo-1577041249022-26cc744ddda3?w=600&auto=format&fit=crop&q=80"
     ],
     "expiryDate": {
       "$date": "2026-10-18T16:59:00.000Z"

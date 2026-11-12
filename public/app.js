@@ -232,8 +232,12 @@
     try {
       const res = await api('/shops');
       state.shops = res.data?.items || res.data || [];
-      if (state.user.role === 'SHOP_OWNER') {
+      if (state.user?.shopId) {
+        state.currentShop = state.shops.find((s) => String(s._id) === String(state.user.shopId)) || { _id: state.user.shopId };
+      } else if (state.user?.role === 'SHOP_OWNER') {
         state.currentShop = state.shops.find((s) => String(s.ownerId?._id || s.ownerId) === String(state.user._id)) || state.shops[0];
+      } else if (state.user?.role === 'STAFF') {
+        state.currentShop = state.shops.find((s) => String(s._id) === String(state.user.shopId)) || state.shops[0];
       } else {
         state.currentShop = state.shops[0];
       }
@@ -699,8 +703,8 @@
   // -------------------------------------------------------------
   async function loadInventoryView() {
     try {
-      if (!state.currentShop && state.shops.length) {
-        state.currentShop = state.shops[0];
+      if (!state.currentShop || (state.user?.shopId && String(state.currentShop._id) !== String(state.user.shopId))) {
+        await loadMyShopInfo();
       }
       const shopParam = state.currentShop?._id ? `&shopId=${state.currentShop._id}` : '';
       const [txRes, alertsRes, prodRes] = await Promise.all([
@@ -814,8 +818,8 @@
     tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải danh sách đơn hàng của shop...</td></tr>';
 
     try {
-      if (!state.currentShop && state.shops.length) {
-        state.currentShop = state.shops[0];
+      if (!state.currentShop || (state.user?.shopId && String(state.currentShop._id) !== String(state.user.shopId))) {
+        await loadMyShopInfo();
       }
       const shopParam = state.currentShop?._id ? `&shopId=${state.currentShop._id}` : '';
       const url = status ? `/myshop/orders?orderStatus=${status}&limit=50${shopParam}` : `/myshop/orders?limit=50${shopParam}`;
@@ -919,7 +923,9 @@
   // -------------------------------------------------------------
   async function loadShopManageView() {
     try {
-      if (!state.currentShop && state.shops.length) state.currentShop = state.shops[0];
+      if (!state.currentShop || (state.user?.shopId && String(state.currentShop._id) !== String(state.user.shopId))) {
+        await loadMyShopInfo();
+      }
       const shopParam = state.currentShop?._id ? `shopId=${state.currentShop._id}&` : '';
       const [shopRes, prodRes, catRes, staffRes, statsRes] = await Promise.all([
         api('/shops'),

@@ -13,6 +13,14 @@ async function publicUser(user) {
     role: user.role,
     accountStatus: user.accountStatus,
   };
+  if (user.role === "SHOP_OWNER") {
+    const Shop = require("../models/shop");
+    const shop = await Shop.findOne({ ownerId: user._id }).lean();
+    if (shop) {
+      data.shopId = shop._id;
+      data.shopName = shop.shopName;
+    }
+  }
   if (user.role === "STAFF") {
     const staff = await ShopStaff.findOne({ userId: user._id }).lean();
     if (staff) {

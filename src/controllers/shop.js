@@ -10,7 +10,7 @@ async function listShops(req, res, next) {
     const limit = Math.min(Math.max(Number.parseInt(req.query.limit, 10) || 20, 1), 100);
     const filter = { approvalStatus: "APPROVED", operationStatus: "OPEN" };
     if (req.query.search) filter.shopName = { $regex: String(req.query.search).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), $options: "i" };
-    const [data, total] = await Promise.all([Shop.find(filter).select("-ownerId").sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit).lean(), Shop.countDocuments(filter)]);
+    const [data, total] = await Promise.all([Shop.find(filter).sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit).lean(), Shop.countDocuments(filter)]);
     return res.json({ success: true, data, pagination: { page, limit, total, totalPages: Math.ceil(total / limit) } });
   } catch (error) { return next(error); }
 }
